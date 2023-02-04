@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36b9ad8a12a44350b5f1c3c44d3ff747" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="ModelDb.CURRENT_TRANSACTION" Width="1.5" PointX="4.5" PointY="11.5" />
+        <EntityTypeShape EntityType="ModelDb.NCassa" Width="1.5" PointX="4.5" PointY="6.875" />
+        <EntityTypeShape EntityType="ModelDb.NObject" Width="1.5" PointX="2.625" PointY="6.375" />
+        <EntityTypeShape EntityType="ModelDb.NStruna" Width="1.5" PointX="0.625" PointY="7.75" />
+        <EntityTypeShape EntityType="ModelDb.NTank" Width="1.5" PointX="0.625" PointY="4.125" />
+        <EntityTypeShape EntityType="ModelDb.PUMP_TOTALS" Width="1.5" PointX="6.5" PointY="8" />
+        <EntityTypeShape EntityType="ModelDb.READY_TRANSACTION" Width="1.5" PointX="6.5" PointY="4" />
+        <EntityTypeShape EntityType="ModelDb.ReCodesTable" Width="1.5" PointX="2.625" PointY="2.25" />
+        <EntityTypeShape EntityType="ModelDb.SendMSG" Width="1.5" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="ModelDb.TANK_READING" Width="1.5" PointX="4.5" PointY="2" />
+        <EntityTypeShape EntityType="ModelDb.TankReading" Width="1.5" PointX="0.625" PointY="11.125" />
+        <EntityTypeShape EntityType="ModelDb.Task_Device" Width="1.5" PointX="2.625" PointY="9.625" />
+        <EntityTypeShape EntityType="ModelDb.TestTable" Width="1.5" PointX="2.625" PointY="4.25" />
+        <AssociationConnector Association="ModelDb.FK_NCassaCURRENT_TRANSACTION" />
+        <AssociationConnector Association="ModelDb.FK_NCassaPUMP_TOTALS" />
+        <AssociationConnector Association="ModelDb.FK_NCassaREADY_TRANSACTION" />
+        <AssociationConnector Association="ModelDb.FK_NCassaTankReading_Cassa" />
+        <AssociationConnector Association="ModelDb.FK_NObjectNCassa" />
+        <AssociationConnector Association="ModelDb.FK_NObjectNStruna" />
+        <AssociationConnector Association="ModelDb.FK_NObjectTask_Device" />
+        <AssociationConnector Association="ModelDb.FK_NStrunaNTank" />
+        <AssociationConnector Association="ModelDb.FK_NStrunaTankReading" />
+        <AssociationConnector Association="ModelDb.FK_NTankSendMSG" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

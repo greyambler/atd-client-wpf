@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ShMI.ClientMain.Controls.UcTasks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShMI.ClientMain.Controls"
+             xmlns:modules="clr-namespace:ShMI.ClientMain.Modules" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             ToolTip="Конфигурация задач"
+             x:Name="ucTasks" Loaded="UserControl_Loaded">
+
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <local:UcListButtons x:Name="ucListButton" Grid.Column="0" Margin="3"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="40,0,40,0" 
+                       Text="{Binding ToolTip, ElementName=ucTasks}"
+                       TextAlignment="Center" VerticalAlignment="Center" 
+                       FontSize="18" FontFamily="MagistralC" />
+
+            <Grid Grid.Row="1" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="{Binding CurrentItem.Name_Task}" TextAlignment="Center" />
+
+                <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True"
+                          ItemsSource="{Binding Path=ListTask_Device}" 
+                          RowDetailsVisibilityMode="VisibleWhenSelected"
+                          SelectedItem="{Binding Path=CurrentItem}" 
+                          SelectionMode="Single" Grid.Row="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Name_Task}" Header="Название задачи" Width="1*" />
+                        <DataGridTemplateColumn Header="Период опроса (c)" Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=String_EquipmentPeriodicity}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn
+                            Binding="{Binding Path=Date_LastLine_Struna, StringFormat=\{0:dd.MM.yyyy HH:mm:ss fff\}}"
+                            Header="Последняя дата Level" Width="1*" />
+                        <DataGridTextColumn
+                            Binding="{Binding Path=Date_LastLine_Cassa, StringFormat=\{0:dd.MM.yyyy HH:mm:ss fff\}}"
+                            Header="Последняя дата Cassa" Width="1*" />
+
+                        <DataGridTextColumn Binding="{Binding Path=CountDaySave}" Header="дней хранения" Width="1*" />
+
+                        <DataGridTextColumn Binding="{Binding Path=Type_Device}" Header="тип" Width="1*" />
+                        <DataGridTextColumn Binding="{Binding Path=Zip_Dir}" Header="Zip_Dir" Width="1*" />
+                        <DataGridTextColumn Binding="{Binding Path=Period_Ping}" Header="Время повторение опроса касс" Width="1*" />
+                        <DataGridTextColumn Binding="{Binding Path=Status}" Header="Status" Width="SizeToCells" />
+
+                        <DataGridTextColumn Binding="{Binding Path=NObject.Name_Object}" Header="Название объекта" Width="1*" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
+
+
+<!--SizeToCells-->
+
+<!--SizeToHeader-->

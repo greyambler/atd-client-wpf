@@ -1,0 +1,32 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:Controls="clr-namespace:ShMI.ClientMain.MainWindowControls"
+        xmlns:Modules="clr-namespace:ShMI.ClientMain.Modules" x:Class="ShMI.ClientMain.MainWindow"
+        mc:Ignorable="d"
+        Title="АТД" Height="650" Width="1200" MinHeight="300" MinWidth="300"
+        Loaded="Window_Loaded" Closed="Window_Closed" KeyDown="Main_Window_KeyDown" KeyUp="Main_Window_KeyUp">
+
+
+    <!--<Window.DataContext>
+        <Modules:ModuleMainWindow/>
+    </Window.DataContext>-->
+
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27"/>
+            <RowDefinition/>
+            <RowDefinition Height="27"/>
+        </Grid.RowDefinitions>
+
+        <Controls:UcHeadrPanel/>
+
+        <Grid x:Name="workGrid" Grid.Row="1"/>
+
+        <Controls:UcBottomPanel Grid.Row="2"/>
+        
+
+    </Grid>
+</Window>

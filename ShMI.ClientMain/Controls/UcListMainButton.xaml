@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="ShMI.ClientMain.Controls.UcListMainButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:modules="clr-namespace:ShMI.ClientMain.Modules" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="120">
+
+    <ListView Name="listButton" HorizontalContentAlignment="Stretch" Margin="1,0" 
+              Style="{StaticResource ListBoxVertical}"
+              Width="{Binding WidthListButton}"
+              Loaded="ListButton_Loaded">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+        </ListView.ItemContainerStyle>
+
+    </ListView>
+</UserControl>

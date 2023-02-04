@@ -1,0 +1,967 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="vint_main" Color="#FFF7F74A" />
+    <SolidColorBrush x:Key="vint_main_g1" Color="#FFCDCDA6" />
+
+    <SolidColorBrush x:Key="vint_black" Color="Black" />
+    <SolidColorBrush x:Key="vint_black_g1" Color="#FF1A1B16" />
+
+    <LinearGradientBrush x:Key="stroke_Vint" StartPoint="0.1,0" EndPoint="0.5,1" >
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterY="0.5" CenterX="0.5" />
+                <SkewTransform CenterY="0.5" CenterX="0.5" />
+                <RotateTransform Angle="-18.435" CenterY="0.5" CenterX="0.5" />
+                <TranslateTransform />
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_black}}" Offset="1" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_main}}"/>
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_main_g1}}" Offset="0.407" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_black_g1}}" Offset="0.911" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="fill_Vint" StartPoint="0,0" EndPoint="0.9,1">
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterY="0.5" CenterX="0.5" />
+                <SkewTransform CenterY="0.5" CenterX="0.5" />
+                <RotateTransform Angle="-18.435" CenterY="0.5" CenterX="0.5" />
+                <TranslateTransform />
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_black}}" Offset="1" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_main}}"/>
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_main_g1}}" Offset="0.407" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vint_black_g1}}" Offset="0.911" />
+    </LinearGradientBrush>
+
+
+
+    <LinearGradientBrush x:Key="my_Vint_Headr_StatusPanel_OLD" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE9D169" Offset="0" />
+        <GradientStop Color="#FF0D100B" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="my_Vint_Headr_StatusPanel" MappingMode="RelativeToBoundingBox" StartPoint="0.2,0"
+            EndPoint="0.9,1">
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterY="0.5" CenterX="0.5" />
+                <SkewTransform CenterY="0.5" CenterX="0.5" />
+                <RotateTransform Angle="-18.435" CenterY="0.5" CenterX="0.5" />
+                <TranslateTransform />
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="Black" Offset="1" />
+        <GradientStop Color="#FFF7F74A" />
+        <GradientStop Color="#FFE0E09A" Offset="0.213" />
+        <GradientStop Color="#FF1A1B16" Offset="0.774" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="my_Text_Headr" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0.282" />
+        <GradientStop Color="CadetBlue" Offset="0.994" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="my_Fill_Rectangles" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FF103039" Offset="1" />
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FF008EC8" Offset="0.511" />
+        <GradientStop Color="#FF103039" Offset="1" />
+        <GradientStop Color="#FFC9ECF5" Offset="0.1" />
+        <GradientStop Color="#FF00B0D8" Offset="0.298" />
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FFC9ECF5" Offset="0.09" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="my_Fill_Rectangles_Light" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF419DC1" Offset="0.674" />
+        <GradientStop Color="Black" Offset="1" />
+        <GradientStop Color="#FF4FBEE8" Offset="0.063" />
+        <GradientStop Color="#FF092834" Offset="0.992" />
+        <GradientStop Color="#FF184661" Offset="0.301" />
+        <GradientStop Color="#FF3096BF" Offset="0.134" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="my_Fill_Rectangles_Old" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF399ABD" Offset="0" />
+        <GradientStop Color="#FF103039" Offset="1" />
+        <GradientStop Color="#FF399ABD" Offset="0" />
+
+        <GradientStop Color="#FF103C4A" Offset="0.511" />
+
+        <GradientStop Color="#FF103039" Offset="1" />
+        <GradientStop Color="#FF399ABD" Offset="0.004" />
+
+        <GradientStop Color="#FF29718C" Offset="0.498" />
+
+        <GradientStop Color="#FF399ABD" Offset="0" />
+        <GradientStop Color="#FF399ABD" Offset="0.009" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="my_Fill_Rectangles_Select" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FF008EC8" Offset="1" />
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FF008EC8" Offset="0.511" />
+        <GradientStop Color="#FF008EC8" Offset="1" />
+        <GradientStop Color="#FFC9ECF5" Offset="0.1" />
+        <GradientStop Color="#FF00B0D8" Offset="0.298" />
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FFC9ECF5" Offset="0.09" />
+    </LinearGradientBrush>
+
+    <Style x:Key="ButtonRound" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Foreground" Value="White" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseEnter">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF008EC8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF00B0D8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF000000" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[8].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.009" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF00B0D8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF008EC8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF000000" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC9ECF5" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF035B8D" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF399ABD" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF103039" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Height="70" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="3,3,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseLeave}"
+                                    x:Name="OnMouseLeave_BeginStoryboard" />
+                        </EventTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="true">
+                            <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>-->
+
+    <Style x:Key="ButtonRound_Number" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseEnter">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF008EC8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF00B0D8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF000000" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[8].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.009" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF00B0D8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF008EC8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF000000" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC9ECF5" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF035B8D" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF399ABD" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF103039" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Width="130" Height="55" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseLeave}"
+                                    x:Name="OnMouseLeave_BeginStoryboard" />
+                        </EventTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonRound_Change" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseEnter">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF008EC8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF00B0D8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF000000" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[8].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.009" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF00B0D8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF008EC8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF000000" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC9ECF5" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF035B8D" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF399ABD" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF103039" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Width="140" Height="30" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <!--<EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseLeave}"
+                                    x:Name="OnMouseLeave_BeginStoryboard" />
+                        </EventTrigger>-->
+
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonRound_Min" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseEnter">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF008EC8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF00B0D8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF000000" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[8].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.009" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF00B0D8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF008EC8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF000000" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC9ECF5" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF035B8D" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF399ABD" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF103039" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="5.5" RadiusY="5.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseLeave}"
+                                    x:Name="OnMouseLeave_BeginStoryboard" />
+                        </EventTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style x:Key="ButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle SnapsToDevicePixels="true" Margin="4" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <SolidColorBrush x:Key="WhiteBrush" Color="#EEE" />
+    <SolidColorBrush x:Key="Fone_Brush" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Fone_Red" Color="Red" />
+    <SolidColorBrush x:Key="Shr_Colors" Color="#FF08284F" />
+    <SolidColorBrush x:Key="Shr_Colors_Disable" Color="#FF909599" />
+    <SolidColorBrush x:Key="Shr_Colors_Disable_Light" Color="#FFB6B6B6" />
+    <SolidColorBrush x:Key="Shr_Colors_Green" Color="#FF007200" />
+
+    <DataTemplate x:Key="ListBoxItemHorizontalData" DataType="{x:Type ListBoxItem}">
+        <StackPanel>
+            <TextBlock Text="{Binding Path=DimObjectText}" TextWrapping="Wrap" Width="70" VerticalAlignment="Bottom"
+                    TextAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+    <Style x:Key="ListBoxItemHorizontalStyle" TargetType="{x:Type ListBoxItem}">
+        <!--<Setter Property="Foreground" Value="{DynamicResource FontColor}" />-->
+        <Setter Property="MaxHeight" Value="30" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Opacity" Value=".75" />
+        <Setter Property="Margin" Value="5" />
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="MaxHeight" To="40" />
+                        <DoubleAnimation Duration="0:0:0.5" Storyboard.TargetProperty="Opacity" To="1.0" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.8" Storyboard.TargetProperty="MaxHeight" />
+                        <DoubleAnimation Duration="0:0:0.8" Storyboard.TargetProperty="Opacity" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ListBoxHorizontal" TargetType="{x:Type ListBox}">
+        <Setter Property="MinHeight" Value="80" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="17"
+                            Background="{DynamicResource DiagramGradientBrush}">
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                            <StackPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Left" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ListBoxVertical" TargetType="{x:Type ListBox}">
+        <Setter Property="MinHeight" Value="80" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="17"
+                            Background="{DynamicResource DiagramGradientBrush}">
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                            <StackPanel IsItemsHost="True" Orientation="Vertical" HorizontalAlignment="Center" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ListBox_Horizontal" TargetType="{x:Type ListBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="17"
+                            Background="{DynamicResource DiagramGradientBrush}">
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                            <StackPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Left" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonSelect" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseEnter">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF008EC8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF00B0D8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF000000" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF035B8D" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FFC9ECF5" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[8].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.009" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF00B0D8" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF008EC8" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF7CD7F7" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.StrokeThickness)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(UIElement.BitmapEffect).(DropShadowBitmapEffect.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF7CD7F7" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF000000" />
+                            </ColorAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Offset)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[4].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FFC9ECF5" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF035B8D" />
+                            </ColorAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle"
+                                    Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF399ABD" />
+                                <SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="#FF103039" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid Width="140" Height="30" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <!--<EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter}" />
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseLeave}"
+                                    x:Name="OnMouseLeave_BeginStoryboard" />
+                        </EventTrigger>-->
+
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonRoundSelect" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Width="140" Height="30" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF08284F" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles_Select}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="ButtonRoundNorm" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource {x:Static Microsoft_Windows_Themes:ClassicBorderDecorator.ClassicBorderBrush}}"/>-->
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Width="140" Height="30" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="3" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

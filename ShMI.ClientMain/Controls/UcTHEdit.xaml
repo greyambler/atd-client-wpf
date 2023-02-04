@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="ShMI.ClientMain.Controls.UcTHEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShMI.ClientMain.Controls"
+             xmlns:modules="clr-namespace:ShMI.ClientMain.Modules" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             ToolTip="Настройка Trade House"
+             x:Name="ucTHEdit" >
+
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <local:UcListButtonsEdit x:Name="ucListButton" Grid.Column="0"/>
+
+        <Grid x:Name="mainGridEdit" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Margin="40,0,40,0" Text="{Binding ToolTip, ElementName=ucTHEdit}"
+                TextAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="MagistralC" />
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Content="Название кассы" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="3"
+                        VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Stretch" Margin="3,0,3,5"
+                        Text="{Binding Path=CurrentItem.Name, Mode=TwoWay, ValidatesOnDataErrors=true}"
+                        VerticalAlignment="Bottom" />
+
+                <Label Content="Название объекта" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="3"
+                        VerticalAlignment="Center" />
+                <ComboBox Grid.Column="1" Grid.Row="2" MinWidth="120" Height="23" 
+                          DisplayMemberPath="Name_Object"
+                          SelectedItem="{Binding Path=CurrentNObject}"
+                          ItemsSource="{Binding Path=ListNObject}" Margin="3"
+                          VerticalAlignment="Center">
+                </ComboBox>
+
+                <Label Content="IP" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Margin="3"
+                        VerticalAlignment="Center" />
+                <TextBox Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="3"
+                        Text="{Binding Path=CurrentItem.IP, Mode=TwoWay, ValidatesOnDataErrors=true}"
+                        VerticalAlignment="Center" />
+
+                <Label Content="Port" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" Margin="3"
+                        VerticalAlignment="Center" />
+                <TextBox Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Stretch" Margin="3"
+                        Text="{Binding Path=CurrentItem.Port, Mode=TwoWay, ValidatesOnDataErrors=true}"
+                        VerticalAlignment="Center" />
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>
+
+
+<!--DisplayMemberPath="Name_Object"-->

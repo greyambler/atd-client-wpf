@@ -1,0 +1,222 @@
+﻿<UserControl x:Name="ucTimeHMSF" x:Class="ShMI.ClientMain.MainWindowControls.Uc_TimeHMSF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:modules="clr-namespace:ShMI.ClientMain.MainWindowControls" 
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="300"
+             Height="75" Width="220" FontSize="10">
+
+    <UserControl.Resources>
+        <modules:Module_TimeHMSF x:Key="Module"/>
+    </UserControl.Resources>
+
+
+    <Grid Name="MainGrid" Grid.Row="1" DataContext="{Binding Source={StaticResource Module}}" Loaded="MainGrid_Loaded" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="2" Grid.Row="1" Margin="2" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <RepeatButton Content="&#9650;" FontSize="7" Name="btn_m" Click="Btn_P_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <RepeatButton Content="&#9660;" FontSize="7" Name="btn_p" Grid.Row="1" Click="Btn_M_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Name="Grid_H">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Часы" TextAlignment="Center" FontSize="10" />
+                <TextBlock Text="{Binding Path=Hour, Mode=TwoWay}" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" x:Name="t_H" MouseDown="UcMouseDown"/>
+            </Grid>
+
+            <TextBlock Text=":" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
+            <Grid Grid.Column="2" Name="Grid_M">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="мин." TextAlignment="Center" FontSize="10" />
+                <TextBlock Text="{Binding Path=Minute, Mode=TwoWay}" Grid.Row="1"
+                   TextAlignment="Center" VerticalAlignment="Center" x:Name="t_M"
+                           MouseDown="UcMouseDown"/>
+
+            </Grid>
+
+            <TextBlock Text=":" Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center"/>
+            <Grid Grid.Column="4" Name="Grid_Sec">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="сек." TextAlignment="Center" Grid.ColumnSpan="2" FontSize="10" />
+                <TextBlock Text="{Binding Path=Second, Mode=TwoWay}" Grid.Row="2"
+                   TextAlignment="Center" VerticalAlignment="Center" x:Name="t_S"
+                           MouseDown="UcMouseDown"/>
+
+            </Grid>
+
+            <TextBlock Text=":" Grid.Column="5" VerticalAlignment="Center" TextAlignment="Center"/>
+            <Grid Grid.Column="6" Name="Grid_MiSec">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="ми.сек." TextAlignment="Center" Grid.ColumnSpan="2" FontSize="10" />
+                <TextBlock Text="{Binding Path=Millisecond, Mode=TwoWay}" Grid.Row="2"
+                   TextAlignment="Center" VerticalAlignment="Center" x:Name="t_MiS"
+                           MouseDown="UcMouseDown"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="130"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <DatePicker Grid.Column="0" Margin="3"
+                            SelectedDate="{Binding Path=InputDateTime, Mode=TwoWay, ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=true}" 
+                            VerticalAlignment="Center" SelectedDateFormat="Long" CalendarClosed="DatePicker_CalendarClosed"
+                            />
+
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="3"
+                           Text="{Binding Path=InputDateTime, Mode=TwoWay, StringFormat=\{0:HH:mm:ss fff\}}"
+                           TextAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+        </Grid>
+        <Grid>
+            <RepeatButton Content="&#2490;" Click="Btn_DelAll_Click" FontSize="9" Name="btn_DelAll" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+    </Grid>
+
+
+
+    <!--<Border BorderBrush="Gray" BorderThickness="0.3" Padding="1" Margin="1">
+        <Grid Name="mainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="2" Margin="2" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <RepeatButton Content="&#9650;" FontSize="7" Name="btn_m" Click="Btn_P_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <RepeatButton Content="&#9660;" FontSize="7" Name="btn_p" Grid.Row="1" Click="Btn_M_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="0" Name="Grid_H">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Часы" TextAlignment="Center" FontSize="10" />
+                    <TextBlock Text="{Binding Path=Hour, Mode=TwoWay}" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" x:Name="t_H" MouseDown="UcMouseDown"/>
+                </Grid>
+
+                <TextBlock Text=":" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
+                <Grid Grid.Column="2" Name="Grid_M">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="мин." TextAlignment="Center" FontSize="10" />
+                    <TextBlock Text="{Binding Path=Minute, Mode=TwoWay}" Grid.Row="1"
+                   TextAlignment="Center" VerticalAlignment="Center" x:Name="t_M"
+                           MouseDown="UcMouseDown"/>
+
+                </Grid>
+
+                <TextBlock Text=":" Grid.Column="3" VerticalAlignment="Center" TextAlignment="Center"/>
+                <Grid Grid.Column="4" Name="Grid_Sec">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="сек." TextAlignment="Center" Grid.ColumnSpan="2" FontSize="10" />
+                    <TextBlock Text="{Binding Path=Second, Mode=TwoWay}" Grid.Row="2"
+                   TextAlignment="Center" VerticalAlignment="Center" x:Name="t_S"
+                           MouseDown="UcMouseDown"/>
+
+                </Grid>
+
+                <TextBlock Text=":" Grid.Column="5" VerticalAlignment="Center" TextAlignment="Center"/>
+                <Grid Grid.Column="6" Name="Grid_MiSec">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="ми.сек." TextAlignment="Center" Grid.ColumnSpan="2" FontSize="10" />
+                    <TextBlock Text="{Binding Path=Millisecond, Mode=TwoWay}" Grid.Row="2"
+                   TextAlignment="Center" VerticalAlignment="Center" x:Name="t_MiS"
+                           MouseDown="UcMouseDown"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="130"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <DatePicker Grid.Column="0" Margin="3"
+                            SelectedDate="{Binding Path=InputDateTime, Mode=TwoWay, ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=true}" 
+                            VerticalAlignment="Center" SelectedDateFormat="Long" CalendarClosed="DatePicker_CalendarClosed"
+                            />
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="3"
+                           Text="{Binding Path=InputDateTime, Mode=TwoWay, StringFormat=\{0:HH:mm:ss fff\}}"
+                           TextAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+
+            </Grid>
+            <Grid>
+                <RepeatButton Content="&#2490;" Click="Btn_DelAll_Click" FontSize="9" Name="btn_DelAll" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Border>-->
+    
+</UserControl>

@@ -1,0 +1,284 @@
+﻿<UserControl x:Class="ShMI.ClientMain.Controls.UcObjects"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShMI.ClientMain.Controls"
+             xmlns:modules="clr-namespace:ShMI.ClientMain.Modules" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             ToolTip="Конфигурация объектов"
+             x:Name="ucObjects" Loaded="UserControl_Loaded">
+
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <local:UcListButtons x:Name="ucListButton" Grid.Column="0" />
+
+        <Grid Grid.Column="1"  Margin="0,0,1,1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="40,0,40,0" Text="{Binding ToolTip, ElementName=ucObjects}"
+                TextAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="MagistralC" />
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" MinHeight="30" />
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <!--Trade House Row 0 -->
+                <Grid Margin="1, 0,1,4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="{Binding CurrentItem.Name_Object}" TextAlignment="Center" />
+
+                    <DataGrid AutoGenerateColumns="False" 
+                      EnableRowVirtualization="True" 
+                      IsReadOnly="True"
+                      ItemsSource="{Binding Path=ListNObject}" 
+                      SelectedItem="{Binding Mode=TwoWay, Path=CurrentItem}" 
+                      RowDetailsVisibilityMode="VisibleWhenSelected" 
+                      SelectionMode="Single"
+                      Grid.Row="1">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=Name_Object}" Header="Название объекта" Width="1*" />
+                            <DataGridTextColumn Binding="{Binding Path=SiteID}" Header="Код объекта" Width="1*" />
+                            <DataGridTextColumn Binding="{Binding Path=Address}" Header="Номер региона" Width="1*" />
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Grid>
+
+                <GridSplitter Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="2" Background="Gray"/>
+
+                <!--Row 1-->
+                <Grid Grid.Row="1" Margin="1,4,1,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Trade House-->
+                    <Grid Margin="0,0,1,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Trade House" TextAlignment="Center" />
+
+                        <DataGrid x:Name="dataMain" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True"
+                          ItemsSource="{Binding Path=ListTH}" 
+                          SelectedItem="{Binding Path=CurrentNCassa}" 
+                          RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Name}" Header="Название кассы" Width="1*"/>
+                                <DataGridTextColumn Binding="{Binding Path=IP}" Header="IP" Width="1*"/>
+                                <DataGridTextColumn Binding="{Binding Path=Port}" Header="Port" Width="1*"/>
+                                <DataGridTextColumn Binding="{Binding CurrentNObject.Name_Object}" Header="Название объекта" Width="1*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="2" Background="Gray"/>
+
+                    <!--Уровнемеры-->
+                    <Grid Grid.Column="1" Margin="4,0,2,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Уровнемеры" TextAlignment="Center" />
+
+                        <DataGrid AutoGenerateColumns="False" Grid.Row="1"
+                                  EnableRowVirtualization="True" 
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding Path=ListNStruna}" 
+                                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                                  SelectedItem="{Binding Path=CurrentNStruna}" 
+                                  SelectionMode="Single"
+                                  >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Name}" Header="Название уровнемера"
+                                Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=NameBatFile}" Header="Путь до BAT файла"
+                                Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=Type_Level}" Header="Тип уровнемера"
+                                Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=IP}" Header="IP" Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=Port}" Header="Порт" Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=CurrentNObject.Name_Object}" Header="Название объекта" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="2" Background="Gray"/>
+
+                    <!--Кассы-->
+                    <Grid Grid.Column="2" Margin="4,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Кассы" TextAlignment="Center" />
+
+                        <DataGrid AutoGenerateColumns="False" Grid.Row="1"
+                              EnableRowVirtualization="True" 
+                              IsReadOnly="True"
+                              ItemsSource="{Binding Path=ListNCassa}" 
+                              RowDetailsVisibilityMode="VisibleWhenSelected" 
+                              SelectedItem="{Binding Path=CurentNCassa}" 
+                              SelectionMode="Single">
+
+                            <DataGrid.Columns>
+                                <!--<DataGridTextColumn Binding="{Binding Path=NCassa_Active, Converter={StaticResource ActiveNCassa}}" Header="Активность кассы" Width="SizeToHeader"/>-->
+                                <DataGridTextColumn Binding="{Binding Path=Name}" Header="Название кассы" Width="SizeToCells" />
+                                <DataGridTextColumn Binding="{Binding Path=IP}" Header="IP" Width="SizeToCells" />
+                                <DataGridTextColumn Binding="{Binding Path=Port}" Header="Port" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=DateStart, StringFormat=\{0:dd.MM.yyyy HH:mm:ss fff\}}" Header="Дата начала" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=LastID}" Header="Последний ID" Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=CountReadLine}" Header="Кол-во записей в запросе" Width="1*" />
+
+                                <DataGridTextColumn Binding="{Binding Path=Cash_type}" Header="Тип кассы" Width="1*" />
+                                <DataGridTextColumn  Binding="{Binding CurrentNObject.Name_Object}" Header="Название объекта" Width="1*"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </Grid>
+
+
+                </Grid>
+
+                <GridSplitter Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="2" Background="Gray"/>
+
+                <!--Row 2-->
+                <Grid Grid.Row="2"  Margin="1,4,1,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Задачи-->
+                    <Grid Margin="0,0,2,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Задачи" TextAlignment="Center" />
+
+                        <DataGrid AutoGenerateColumns="False" 
+                                  EnableRowVirtualization="True" 
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding Path=ListTask_Device}" 
+                                  RowDetailsVisibilityMode="VisibleWhenSelected"
+                                  SelectedItem="{Binding Path=CurrentTask_Device}" 
+                                  SelectionMode="Single"
+                                  Grid.Row="1" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Name_Task}" Header="Название задачи" Width="SizeToCells" />
+                                <DataGridTemplateColumn Header="Период (c)" Width="SizeToHeader">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=String_EquipmentPeriodicity}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=CountDaySave}" Header="дней хранения" Width="SizeToCells" />
+                                <DataGridTextColumn Binding="{Binding Path=Type_Device}" Header="тип" Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=Zip_Dir}" Header="Zip_Dir" Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=Status}" Header="Status" Width="SizeToHeader" />
+                                <DataGridTextColumn Binding="{Binding Path=CurrentNObject.Name_Object}" Header="Название объекта" Width="*" />
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="2" Background="Gray"/>
+
+                    <!--Резервуары-->
+                    <Grid Grid.Column="1" Margin="4,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Резервуары" TextAlignment="Center" />
+
+                        <DataGrid AutoGenerateColumns="False" 
+                                      EnableRowVirtualization="True" 
+                                      IsReadOnly="True"
+                                      ItemsSource="{Binding Path=ListNTank}" 
+                                      RowDetailsVisibilityMode="VisibleWhenSelected" 
+                                      SelectedItem="{Binding Path=CurentNTank}" 
+                                      SelectionMode="Single" 
+                                      Grid.Row="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Grade_Name}" Header="Название сорта НП" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=TankNumber}" Header="Номер резервуара" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=Grade}" Header="Номер сорта НП(код)" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=CurNStruna.Name}" Header="Название уровнемера" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=Max_Volume}" Header="Макс. вместимость" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=WaterLevel_Allow}" Header="Допустимый уровень воды (см)" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=Water_alarm}" Header="Повтор сообщение по воде" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding Path=Level_alarm}" Header="Повтор сообщение по уровню" Width="1*" />
+                                <DataGridTextColumn Binding="{Binding CurrentNObject.Name_Object}" Header="Название объекта" Width="1*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+
+
+        <!--<Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            
+            <TextBlock Grid.Row="0" Margin="40,0,40,0" Text="{Binding ToolTip, ElementName=ucObjects}"
+                TextAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="MagistralC" />
+
+            <TextBlock Grid.Row="1" Text="{Binding CurrentItem.Name_Object}" TextAlignment="Center" />
+
+            <DataGrid AutoGenerateColumns="False" 
+                      EnableRowVirtualization="True" 
+                      IsReadOnly="True"
+                      ItemsSource="{Binding Path=ListNObject}" 
+                      SelectedItem="{Binding Mode=TwoWay, Path=CurrentItem}" 
+                      RowDetailsVisibilityMode="VisibleWhenSelected" 
+                      SelectionMode="Single"
+                      Grid.Row="2">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Name_Object}" Header="Название объекта" Width="SizeToHeader" />
+                    <DataGridTextColumn Binding="{Binding Path=SiteID}" Header="Код объекта" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Path=Address}" Header="Номер региона" Width="*" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </Grid>-->
+
+    </Grid>
+</UserControl>

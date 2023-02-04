@@ -1,0 +1,120 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="vintMain" Color="#FFF7F74A" />
+    <SolidColorBrush x:Key="vintMain_g1" Color="#FFCDCDA6" />
+
+    <SolidColorBrush x:Key="vintBlack" Color="Black" />
+    <SolidColorBrush x:Key="vintBlack_g1" Color="#FF1A1B16" />
+
+    <LinearGradientBrush x:Key="my_Fill_Rectangles" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FF103039" Offset="1" />
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FF008EC8" Offset="0.511" />
+        <GradientStop Color="#FF103039" Offset="1" />
+        <GradientStop Color="#FFC9ECF5" Offset="0.1" />
+        <GradientStop Color="#FF00B0D8" Offset="0.298" />
+        <GradientStop Color="#FFC9ECF5" Offset="0" />
+        <GradientStop Color="#FFC9ECF5" Offset="0.09" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="WhiteBrush" Color="#EEE" />
+    <SolidColorBrush x:Key="Fone_Brush" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Fone_Red" Color="Red" />
+    <SolidColorBrush x:Key="Shr_Colors" Color="#FF08284F" />
+    <SolidColorBrush x:Key="Shr_Colors_Disable" Color="#FF909599" />
+    <SolidColorBrush x:Key="Shr_Colors_Disable_Light" Color="#FFB6B6B6" />
+    <SolidColorBrush x:Key="Shr_Colors_Green" Color="#FF007200" />
+
+
+    <LinearGradientBrush x:Key="strokeVint" StartPoint="0.1,0" EndPoint="0.5,1" >
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterY="0.5" CenterX="0.5" />
+                <SkewTransform CenterY="0.5" CenterX="0.5" />
+                <RotateTransform Angle="-18.435" CenterY="0.5" CenterX="0.5" />
+                <TranslateTransform />
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="{Binding Color, Source={StaticResource vintBlack}}" Offset="1" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vintMain}}"/>
+        <GradientStop Color="{Binding Color, Source={StaticResource vintMain_g1}}" Offset="0.407" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vintBlack_g1}}" Offset="0.911" />
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="fillVint" StartPoint="0,0" EndPoint="0.9,1">
+        <LinearGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterY="0.5" CenterX="0.5" />
+                <SkewTransform CenterY="0.5" CenterX="0.5" />
+                <RotateTransform Angle="-18.435" CenterY="0.5" CenterX="0.5" />
+                <TranslateTransform />
+            </TransformGroup>
+        </LinearGradientBrush.RelativeTransform>
+        <GradientStop Color="{Binding Color, Source={StaticResource vintBlack}}" Offset="1" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vintMain}}"/>
+        <GradientStop Color="{Binding Color, Source={StaticResource vintMain_g1}}" Offset="0.407" />
+        <GradientStop Color="{Binding Color, Source={StaticResource vintBlack_g1}}" Offset="0.911" />
+    </LinearGradientBrush>
+
+    <Style x:Key="ListBoxVertical" TargetType="{x:Type ListBox}">
+        <Setter Property="MinHeight" Value="80" />
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="17"
+                            Background="{DynamicResource DiagramGradientBrush}">
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                            <StackPanel IsItemsHost="True" Orientation="Vertical" HorizontalAlignment="Center" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonRound_Change" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,0,1,1" />
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Width="140" Height="30" Cursor="Hand">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="rectangle"
+                                VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="8.5" RadiusY="8.5"
+                                Stroke="#FF7CD7F7" StrokeThickness="0" Fill="{StaticResource my_Fill_Rectangles}">
+                            <Rectangle.BitmapEffect>
+                                <DropShadowBitmapEffect ShadowDepth="2" />
+                            </Rectangle.BitmapEffect>
+                        </Rectangle>
+                        <ContentPresenter Cursor="Hand" HorizontalAlignment="Center" x:Name="contentPresenter"
+                                VerticalAlignment="Center" Content="{TemplateBinding Tag}">
+                            <ContentPresenter.BitmapEffect>
+                                <DropShadowBitmapEffect Color="#FF399ABD" />
+                            </ContentPresenter.BitmapEffect>
+                        </ContentPresenter>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true" />
+                        <Trigger Property="IsDefaulted" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked" Value="true" />
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

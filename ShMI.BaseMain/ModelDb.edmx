@@ -1,0 +1,1023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelDb.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelDbStoreContainer">
+    <EntitySet Name="CURRENT_TRANSACTION" EntityType="ModelDb.Store.CURRENT_TRANSACTION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NCassas" EntityType="ModelDb.Store.NCassas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NObjects" EntityType="ModelDb.Store.NObjects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NStrunas" EntityType="ModelDb.Store.NStrunas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NTanks" EntityType="ModelDb.Store.NTanks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PUMP_TOTALS" EntityType="ModelDb.Store.PUMP_TOTALS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="READY_TRANSACTION" EntityType="ModelDb.Store.READY_TRANSACTION" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReCodesTables" EntityType="ModelDb.Store.ReCodesTables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SendMSGs" EntityType="ModelDb.Store.SendMSGs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TANK_READING" EntityType="ModelDb.Store.TANK_READING" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TankReadings" EntityType="ModelDb.Store.TankReadings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Task_Device" EntityType="ModelDb.Store.Task_Device" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestTables" EntityType="ModelDb.Store.TestTables" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_NCassaCURRENT_TRANSACTION" Association="ModelDb.Store.FK_NCassaCURRENT_TRANSACTION">
+      <End Role="NCassa" EntitySet="NCassas" />
+      <End Role="CURRENT_TRANSACTION" EntitySet="CURRENT_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCassaPUMP_TOTALS" Association="ModelDb.Store.FK_NCassaPUMP_TOTALS">
+      <End Role="NCassa" EntitySet="NCassas" />
+      <End Role="PUMP_TOTALS" EntitySet="PUMP_TOTALS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCassaREADY_TRANSACTION" Association="ModelDb.Store.FK_NCassaREADY_TRANSACTION">
+      <End Role="NCassa" EntitySet="NCassas" />
+      <End Role="READY_TRANSACTION" EntitySet="READY_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCassaTankReading_Cassa" Association="ModelDb.Store.FK_NCassaTankReading_Cassa">
+      <End Role="NCassa" EntitySet="NCassas" />
+      <End Role="TANK_READING" EntitySet="TANK_READING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NObjectNCassa" Association="ModelDb.Store.FK_NObjectNCassa">
+      <End Role="NObject" EntitySet="NObjects" />
+      <End Role="NCassa" EntitySet="NCassas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NObjectNStruna" Association="ModelDb.Store.FK_NObjectNStruna">
+      <End Role="NObject" EntitySet="NObjects" />
+      <End Role="NStruna" EntitySet="NStrunas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NObjectTask_Device" Association="ModelDb.Store.FK_NObjectTask_Device">
+      <End Role="NObject" EntitySet="NObjects" />
+      <End Role="Task_Device" EntitySet="Task_Device" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NStrunaNTank" Association="ModelDb.Store.FK_NStrunaNTank">
+      <End Role="NStruna" EntitySet="NStrunas" />
+      <End Role="NTank" EntitySet="NTanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NStrunaTankReading" Association="ModelDb.Store.FK_NStrunaTankReading">
+      <End Role="NStruna" EntitySet="NStrunas" />
+      <End Role="TankReading" EntitySet="TankReadings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NTankSendMSG" Association="ModelDb.Store.FK_NTankSendMSG">
+      <End Role="NTank" EntitySet="NTanks" />
+      <End Role="SendMSG" EntitySet="SendMSGs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CURRENT_TRANSACTION">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="ReferenceTime" Type="datetime" Nullable="false" />
+    <Property Name="DateCreatedLineCassa" Type="datetime" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="Pump" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Nozzle" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Volume" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Value" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Price" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="TranNumber" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="NCassaId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="NCassas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Port" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DateStart" Type="datetime" Nullable="true" />
+    <Property Name="NObjectId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LastID" Type="int" Nullable="false" />
+    <Property Name="CountReadLine" Type="int" Nullable="false" />
+    <Property Name="NCassa_Active" Type="bit" Nullable="false" />
+    <Property Name="Cash_type" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="NObjectId_Name" Type="nvarchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="NObjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name_Object" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="SiteID" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="NStrunas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="IP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Port" Type="int" Nullable="true" />
+    <Property Name="NObjectId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="NameBatFile" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Type_Level" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="NTanks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TankNumber" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Grade_Name" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="NStrunaId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Max_Volume" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="WaterLevel_Allow" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Water_alarm" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Level_alarm" Type="nvarchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PUMP_TOTALS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="ReferenceTime" Type="datetime" Nullable="false" />
+    <Property Name="DateCreatedLineCassa" Type="datetime" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="Pump" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Nozzle" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Volume" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="StatusMsg" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="NCassaId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="READY_TRANSACTION">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="ReferenceTime" Type="datetime" Nullable="false" />
+    <Property Name="DateCreatedLineCassa" Type="datetime" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="Pump" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Nozzle" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Volume" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Value" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="Price" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="TranNumber" Type="int" Nullable="true" />
+    <Property Name="NCassaId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="ReCodesTables">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GlobalCode" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="LocalCode" Type="nvarchar" Nullable="false" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="SendMSGs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateSendLast" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="StatusMsg" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="TypeWarn" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="WaterLevel" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="NTankId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TankNumber" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Grade_Name" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="TANK_READING">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="ReferenceTime" Type="datetime" Nullable="false" />
+    <Property Name="DateCreatedLineCassa" Type="datetime" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="TankNumber" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Volume" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="FuelLevel" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Temperature" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="FuelWeight" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Density" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="WaterLevel" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="StatusMsg" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="NCassaId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="TankReadings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="ReferenceTime" Type="datetime" Nullable="false" />
+    <Property Name="DateCreatedLineStruna" Type="datetime" Nullable="false" />
+    <Property Name="RecordID" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="TankNumber" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Grade" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Volume" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="FuelLevel" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Temperature" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="FuelWeight" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Density" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="WaterLevel" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="StatusMsg" Type="ntext" Nullable="true" />
+    <Property Name="NStrunaId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="Task_Device">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date_LastLine_Struna" Type="datetime" Nullable="true" />
+    <Property Name="Date_LastLine_Cassa" Type="datetime" Nullable="true" />
+    <Property Name="Name_Task" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Period_Task" Type="int" Nullable="false" />
+    <Property Name="Type_Device" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="Zip_Dir" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="NObjectId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CountDaySave" Type="int" Nullable="false" />
+    <Property Name="Period_Ping" Type="int" Nullable="true" />
+    <Property Name="Is_TaskOk" Type="bit" Nullable="true" />
+    <Property Name="Status" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="StatusMsg" Type="ntext" Nullable="true" />
+    <Property Name="Type_Task" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="TestTables">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="4000" />
+  </EntityType>
+  <Association Name="FK_NCassaCURRENT_TRANSACTION">
+    <End Role="NCassa" Type="ModelDb.Store.NCassas" Multiplicity="1" />
+    <End Role="CURRENT_TRANSACTION" Type="ModelDb.Store.CURRENT_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCassa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CURRENT_TRANSACTION">
+        <PropertyRef Name="NCassaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCassaPUMP_TOTALS">
+    <End Role="NCassa" Type="ModelDb.Store.NCassas" Multiplicity="1" />
+    <End Role="PUMP_TOTALS" Type="ModelDb.Store.PUMP_TOTALS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCassa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PUMP_TOTALS">
+        <PropertyRef Name="NCassaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCassaREADY_TRANSACTION">
+    <End Role="NCassa" Type="ModelDb.Store.NCassas" Multiplicity="1" />
+    <End Role="READY_TRANSACTION" Type="ModelDb.Store.READY_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCassa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="READY_TRANSACTION">
+        <PropertyRef Name="NCassaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCassaTankReading_Cassa">
+    <End Role="NCassa" Type="ModelDb.Store.NCassas" Multiplicity="1" />
+    <End Role="TANK_READING" Type="ModelDb.Store.TANK_READING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCassa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TANK_READING">
+        <PropertyRef Name="NCassaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NObjectNCassa">
+    <End Role="NObject" Type="ModelDb.Store.NObjects" Multiplicity="1" />
+    <End Role="NCassa" Type="ModelDb.Store.NCassas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NCassa">
+        <PropertyRef Name="NObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NObjectNStruna">
+    <End Role="NObject" Type="ModelDb.Store.NObjects" Multiplicity="1" />
+    <End Role="NStruna" Type="ModelDb.Store.NStrunas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NStruna">
+        <PropertyRef Name="NObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NObjectTask_Device">
+    <End Role="NObject" Type="ModelDb.Store.NObjects" Multiplicity="1" />
+    <End Role="Task_Device" Type="ModelDb.Store.Task_Device" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task_Device">
+        <PropertyRef Name="NObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NStrunaNTank">
+    <End Role="NStruna" Type="ModelDb.Store.NStrunas" Multiplicity="1" />
+    <End Role="NTank" Type="ModelDb.Store.NTanks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NStruna">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NTank">
+        <PropertyRef Name="NStrunaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NStrunaTankReading">
+    <End Role="NStruna" Type="ModelDb.Store.NStrunas" Multiplicity="1" />
+    <End Role="TankReading" Type="ModelDb.Store.TankReadings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NStruna">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TankReading">
+        <PropertyRef Name="NStrunaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NTankSendMSG">
+    <End Role="NTank" Type="ModelDb.Store.NTanks" Multiplicity="1" />
+    <End Role="SendMSG" Type="ModelDb.Store.SendMSGs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NTank">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SendMSG">
+        <PropertyRef Name="NTankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EntitiesDb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CURRENT_TRANSACTION" EntityType="ModelDb.CURRENT_TRANSACTION" />
+          <EntitySet Name="NCassas" EntityType="ModelDb.NCassa" />
+          <EntitySet Name="NObjects" EntityType="ModelDb.NObject" />
+          <EntitySet Name="NStrunas" EntityType="ModelDb.NStruna" />
+          <EntitySet Name="NTanks" EntityType="ModelDb.NTank" />
+          <EntitySet Name="PUMP_TOTALS" EntityType="ModelDb.PUMP_TOTALS" />
+          <EntitySet Name="READY_TRANSACTION" EntityType="ModelDb.READY_TRANSACTION" />
+          <EntitySet Name="ReCodesTables" EntityType="ModelDb.ReCodesTable" />
+          <EntitySet Name="SendMSGs" EntityType="ModelDb.SendMSG" />
+          <EntitySet Name="TANK_READING" EntityType="ModelDb.TANK_READING" />
+          <EntitySet Name="TankReadings" EntityType="ModelDb.TankReading" />
+          <EntitySet Name="Task_Device" EntityType="ModelDb.Task_Device" />
+          <EntitySet Name="TestTables" EntityType="ModelDb.TestTable" />
+          <AssociationSet Name="FK_NCassaCURRENT_TRANSACTION" Association="ModelDb.FK_NCassaCURRENT_TRANSACTION">
+            <End Role="NCassa" EntitySet="NCassas" />
+            <End Role="CURRENT_TRANSACTION" EntitySet="CURRENT_TRANSACTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NCassaPUMP_TOTALS" Association="ModelDb.FK_NCassaPUMP_TOTALS">
+            <End Role="NCassa" EntitySet="NCassas" />
+            <End Role="PUMP_TOTALS" EntitySet="PUMP_TOTALS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NCassaREADY_TRANSACTION" Association="ModelDb.FK_NCassaREADY_TRANSACTION">
+            <End Role="NCassa" EntitySet="NCassas" />
+            <End Role="READY_TRANSACTION" EntitySet="READY_TRANSACTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NCassaTankReading_Cassa" Association="ModelDb.FK_NCassaTankReading_Cassa">
+            <End Role="NCassa" EntitySet="NCassas" />
+            <End Role="TANK_READING" EntitySet="TANK_READING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NObjectNCassa" Association="ModelDb.FK_NObjectNCassa">
+            <End Role="NObject" EntitySet="NObjects" />
+            <End Role="NCassa" EntitySet="NCassas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NObjectNStruna" Association="ModelDb.FK_NObjectNStruna">
+            <End Role="NObject" EntitySet="NObjects" />
+            <End Role="NStruna" EntitySet="NStrunas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NObjectTask_Device" Association="ModelDb.FK_NObjectTask_Device">
+            <End Role="NObject" EntitySet="NObjects" />
+            <End Role="Task_Device" EntitySet="Task_Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NStrunaNTank" Association="ModelDb.FK_NStrunaNTank">
+            <End Role="NStruna" EntitySet="NStrunas" />
+            <End Role="NTank" EntitySet="NTanks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NStrunaTankReading" Association="ModelDb.FK_NStrunaTankReading">
+            <End Role="NStruna" EntitySet="NStrunas" />
+            <End Role="TankReading" EntitySet="TankReadings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NTankSendMSG" Association="ModelDb.FK_NTankSendMSG">
+            <End Role="NTank" EntitySet="NTanks" />
+            <End Role="SendMSG" EntitySet="SendMSGs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CURRENT_TRANSACTION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SiteID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreatedLineCassa" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordID" Type="Int32" Nullable="false" />
+          <Property Name="Pump" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Nozzle" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TranNumber" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NCassaId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NCassa" Relationship="ModelDb.FK_NCassaCURRENT_TRANSACTION" FromRole="CURRENT_TRANSACTION" ToRole="NCassa" />
+        </EntityType>
+        <EntityType Name="NCassa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="NObjectId" Type="Guid" Nullable="false" />
+          <Property Name="LastID" Type="Int32" Nullable="false" />
+          <Property Name="CountReadLine" Type="Int32" Nullable="false" />
+          <Property Name="NCassa_Active" Type="Boolean" Nullable="false" />
+          <Property Name="Cash_type" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NObjectId_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CURRENT_TRANSACTION" Relationship="ModelDb.FK_NCassaCURRENT_TRANSACTION" FromRole="NCassa" ToRole="CURRENT_TRANSACTION" />
+          <NavigationProperty Name="PUMP_TOTALS" Relationship="ModelDb.FK_NCassaPUMP_TOTALS" FromRole="NCassa" ToRole="PUMP_TOTALS" />
+          <NavigationProperty Name="READY_TRANSACTION" Relationship="ModelDb.FK_NCassaREADY_TRANSACTION" FromRole="NCassa" ToRole="READY_TRANSACTION" />
+          <NavigationProperty Name="TANK_READING" Relationship="ModelDb.FK_NCassaTankReading_Cassa" FromRole="NCassa" ToRole="TANK_READING" />
+          <NavigationProperty Name="NObject" Relationship="ModelDb.FK_NObjectNCassa" FromRole="NCassa" ToRole="NObject" />
+        </EntityType>
+        <EntityType Name="NObject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name_Object" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SiteID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NCassas" Relationship="ModelDb.FK_NObjectNCassa" FromRole="NObject" ToRole="NCassa" />
+          <NavigationProperty Name="NStrunas" Relationship="ModelDb.FK_NObjectNStruna" FromRole="NObject" ToRole="NStruna" />
+          <NavigationProperty Name="Task_Device" Relationship="ModelDb.FK_NObjectTask_Device" FromRole="NObject" ToRole="Task_Device" />
+        </EntityType>
+        <EntityType Name="NStruna">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="NObjectId" Type="Guid" Nullable="false" />
+          <Property Name="NameBatFile" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Level" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NObject" Relationship="ModelDb.FK_NObjectNStruna" FromRole="NStruna" ToRole="NObject" />
+          <NavigationProperty Name="NTanks" Relationship="ModelDb.FK_NStrunaNTank" FromRole="NStruna" ToRole="NTank" />
+          <NavigationProperty Name="TankReadings" Relationship="ModelDb.FK_NStrunaTankReading" FromRole="NStruna" ToRole="TankReading" />
+        </EntityType>
+        <EntityType Name="NTank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TankNumber" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade_Name" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NStrunaId" Type="Guid" Nullable="false" />
+          <Property Name="Max_Volume" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="WaterLevel_Allow" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Water_alarm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Level_alarm" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NStruna" Relationship="ModelDb.FK_NStrunaNTank" FromRole="NTank" ToRole="NStruna" />
+          <NavigationProperty Name="SendMSGs" Relationship="ModelDb.FK_NTankSendMSG" FromRole="NTank" ToRole="SendMSG" />
+        </EntityType>
+        <EntityType Name="PUMP_TOTALS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SiteID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreatedLineCassa" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordID" Type="Int32" Nullable="false" />
+          <Property Name="Pump" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Nozzle" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusMsg" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NCassaId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NCassa" Relationship="ModelDb.FK_NCassaPUMP_TOTALS" FromRole="PUMP_TOTALS" ToRole="NCassa" />
+        </EntityType>
+        <EntityType Name="READY_TRANSACTION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SiteID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreatedLineCassa" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordID" Type="Int32" Nullable="false" />
+          <Property Name="Pump" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Nozzle" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TranNumber" Type="Int32" />
+          <Property Name="NCassaId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NCassa" Relationship="ModelDb.FK_NCassaREADY_TRANSACTION" FromRole="READY_TRANSACTION" ToRole="NCassa" />
+        </EntityType>
+        <EntityType Name="ReCodesTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="GlobalCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LocalCode" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SendMSG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DateSendLast" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusMsg" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TypeWarn" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="WaterLevel" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NTankId" Type="Guid" Nullable="false" />
+          <Property Name="TankNumber" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade_Name" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NTank" Relationship="ModelDb.FK_NTankSendMSG" FromRole="SendMSG" ToRole="NTank" />
+        </EntityType>
+        <EntityType Name="TANK_READING">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SiteID" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreatedLineCassa" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordID" Type="Int32" Nullable="false" />
+          <Property Name="TankNumber" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FuelLevel" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Temperature" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FuelWeight" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Density" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="WaterLevel" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusMsg" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NCassaId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NCassa" Relationship="ModelDb.FK_NCassaTankReading_Cassa" FromRole="TANK_READING" ToRole="NCassa" />
+        </EntityType>
+        <EntityType Name="TankReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SiteID" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreatedLineStruna" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordID" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TankNumber" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FuelLevel" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Temperature" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FuelWeight" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Density" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="WaterLevel" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NStrunaId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NStruna" Relationship="ModelDb.FK_NStrunaTankReading" FromRole="TankReading" ToRole="NStruna" />
+        </EntityType>
+        <EntityType Name="Task_Device">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date_LastLine_Struna" Type="DateTime" Precision="3" />
+          <Property Name="Date_LastLine_Cassa" Type="DateTime" Precision="3" />
+          <Property Name="Name_Task" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Period_Task" Type="Int32" Nullable="false" />
+          <Property Name="Type_Device" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Zip_Dir" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NObjectId" Type="Guid" Nullable="false" />
+          <Property Name="CountDaySave" Type="Int32" Nullable="false" />
+          <Property Name="Period_Ping" Type="Int32" />
+          <Property Name="Is_TaskOk" Type="Boolean" />
+          <Property Name="Status" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Task" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NObject" Relationship="ModelDb.FK_NObjectTask_Device" FromRole="Task_Device" ToRole="NObject" />
+        </EntityType>
+        <EntityType Name="TestTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_NCassaCURRENT_TRANSACTION">
+          <End Type="ModelDb.NCassa" Role="NCassa" Multiplicity="1" />
+          <End Type="ModelDb.CURRENT_TRANSACTION" Role="CURRENT_TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NCassa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CURRENT_TRANSACTION">
+              <PropertyRef Name="NCassaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NCassaPUMP_TOTALS">
+          <End Type="ModelDb.NCassa" Role="NCassa" Multiplicity="1" />
+          <End Type="ModelDb.PUMP_TOTALS" Role="PUMP_TOTALS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NCassa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PUMP_TOTALS">
+              <PropertyRef Name="NCassaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NCassaREADY_TRANSACTION">
+          <End Type="ModelDb.NCassa" Role="NCassa" Multiplicity="1" />
+          <End Type="ModelDb.READY_TRANSACTION" Role="READY_TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NCassa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="READY_TRANSACTION">
+              <PropertyRef Name="NCassaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NCassaTankReading_Cassa">
+          <End Type="ModelDb.NCassa" Role="NCassa" Multiplicity="1" />
+          <End Type="ModelDb.TANK_READING" Role="TANK_READING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NCassa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TANK_READING">
+              <PropertyRef Name="NCassaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NObjectNCassa">
+          <End Type="ModelDb.NObject" Role="NObject" Multiplicity="1" />
+          <End Type="ModelDb.NCassa" Role="NCassa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NObject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NCassa">
+              <PropertyRef Name="NObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NObjectNStruna">
+          <End Type="ModelDb.NObject" Role="NObject" Multiplicity="1" />
+          <End Type="ModelDb.NStruna" Role="NStruna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NObject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NStruna">
+              <PropertyRef Name="NObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NObjectTask_Device">
+          <End Type="ModelDb.NObject" Role="NObject" Multiplicity="1" />
+          <End Type="ModelDb.Task_Device" Role="Task_Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NObject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task_Device">
+              <PropertyRef Name="NObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NStrunaNTank">
+          <End Type="ModelDb.NStruna" Role="NStruna" Multiplicity="1" />
+          <End Type="ModelDb.NTank" Role="NTank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NStruna">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NTank">
+              <PropertyRef Name="NStrunaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NStrunaTankReading">
+          <End Type="ModelDb.NStruna" Role="NStruna" Multiplicity="1" />
+          <End Type="ModelDb.TankReading" Role="TankReading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NStruna">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TankReading">
+              <PropertyRef Name="NStrunaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NTankSendMSG">
+          <End Type="ModelDb.NTank" Role="NTank" Multiplicity="1" />
+          <End Type="ModelDb.SendMSG" Role="SendMSG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NTank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SendMSG">
+              <PropertyRef Name="NTankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelDbStoreContainer" CdmEntityContainer="EntitiesDb">
+    <EntitySetMapping Name="CURRENT_TRANSACTION">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.CURRENT_TRANSACTION)">
+        <MappingFragment StoreEntitySet="CURRENT_TRANSACTION">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="ReferenceTime" ColumnName="ReferenceTime" />
+          <ScalarProperty Name="DateCreatedLineCassa" ColumnName="DateCreatedLineCassa" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="Pump" ColumnName="Pump" />
+          <ScalarProperty Name="Nozzle" ColumnName="Nozzle" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="TranNumber" ColumnName="TranNumber" />
+          <ScalarProperty Name="NCassaId" ColumnName="NCassaId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NCassas">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.NCassa)">
+        <MappingFragment StoreEntitySet="NCassas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Port" ColumnName="Port" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="NObjectId" ColumnName="NObjectId" />
+          <ScalarProperty Name="LastID" ColumnName="LastID" />
+          <ScalarProperty Name="CountReadLine" ColumnName="CountReadLine" />
+          <ScalarProperty Name="NCassa_Active" ColumnName="NCassa_Active" />
+          <ScalarProperty Name="Cash_type" ColumnName="Cash_type" />
+          <ScalarProperty Name="NObjectId_Name" ColumnName="NObjectId_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NObjects">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.NObject)">
+        <MappingFragment StoreEntitySet="NObjects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name_Object" ColumnName="Name_Object" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NStrunas">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.NStruna)">
+        <MappingFragment StoreEntitySet="NStrunas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Port" ColumnName="Port" />
+          <ScalarProperty Name="NObjectId" ColumnName="NObjectId" />
+          <ScalarProperty Name="NameBatFile" ColumnName="NameBatFile" />
+          <ScalarProperty Name="Type_Level" ColumnName="Type_Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NTanks">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.NTank)">
+        <MappingFragment StoreEntitySet="NTanks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TankNumber" ColumnName="TankNumber" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Grade_Name" ColumnName="Grade_Name" />
+          <ScalarProperty Name="NStrunaId" ColumnName="NStrunaId" />
+          <ScalarProperty Name="Max_Volume" ColumnName="Max_Volume" />
+          <ScalarProperty Name="WaterLevel_Allow" ColumnName="WaterLevel_Allow" />
+          <ScalarProperty Name="Water_alarm" ColumnName="Water_alarm" />
+          <ScalarProperty Name="Level_alarm" ColumnName="Level_alarm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PUMP_TOTALS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.PUMP_TOTALS)">
+        <MappingFragment StoreEntitySet="PUMP_TOTALS">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="ReferenceTime" ColumnName="ReferenceTime" />
+          <ScalarProperty Name="DateCreatedLineCassa" ColumnName="DateCreatedLineCassa" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="Pump" ColumnName="Pump" />
+          <ScalarProperty Name="Nozzle" ColumnName="Nozzle" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusMsg" ColumnName="StatusMsg" />
+          <ScalarProperty Name="NCassaId" ColumnName="NCassaId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="READY_TRANSACTION">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.READY_TRANSACTION)">
+        <MappingFragment StoreEntitySet="READY_TRANSACTION">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="ReferenceTime" ColumnName="ReferenceTime" />
+          <ScalarProperty Name="DateCreatedLineCassa" ColumnName="DateCreatedLineCassa" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="Pump" ColumnName="Pump" />
+          <ScalarProperty Name="Nozzle" ColumnName="Nozzle" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="TranNumber" ColumnName="TranNumber" />
+          <ScalarProperty Name="NCassaId" ColumnName="NCassaId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReCodesTables">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.ReCodesTable)">
+        <MappingFragment StoreEntitySet="ReCodesTables">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GlobalCode" ColumnName="GlobalCode" />
+          <ScalarProperty Name="LocalCode" ColumnName="LocalCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendMSGs">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.SendMSG)">
+        <MappingFragment StoreEntitySet="SendMSGs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateSendLast" ColumnName="DateSendLast" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusMsg" ColumnName="StatusMsg" />
+          <ScalarProperty Name="TypeWarn" ColumnName="TypeWarn" />
+          <ScalarProperty Name="WaterLevel" ColumnName="WaterLevel" />
+          <ScalarProperty Name="NTankId" ColumnName="NTankId" />
+          <ScalarProperty Name="TankNumber" ColumnName="TankNumber" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Grade_Name" ColumnName="Grade_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TANK_READING">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.TANK_READING)">
+        <MappingFragment StoreEntitySet="TANK_READING">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="ReferenceTime" ColumnName="ReferenceTime" />
+          <ScalarProperty Name="DateCreatedLineCassa" ColumnName="DateCreatedLineCassa" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="TankNumber" ColumnName="TankNumber" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="FuelLevel" ColumnName="FuelLevel" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+          <ScalarProperty Name="FuelWeight" ColumnName="FuelWeight" />
+          <ScalarProperty Name="Density" ColumnName="Density" />
+          <ScalarProperty Name="WaterLevel" ColumnName="WaterLevel" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusMsg" ColumnName="StatusMsg" />
+          <ScalarProperty Name="NCassaId" ColumnName="NCassaId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TankReadings">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.TankReading)">
+        <MappingFragment StoreEntitySet="TankReadings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="ReferenceTime" ColumnName="ReferenceTime" />
+          <ScalarProperty Name="DateCreatedLineStruna" ColumnName="DateCreatedLineStruna" />
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="TankNumber" ColumnName="TankNumber" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="FuelLevel" ColumnName="FuelLevel" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+          <ScalarProperty Name="FuelWeight" ColumnName="FuelWeight" />
+          <ScalarProperty Name="Density" ColumnName="Density" />
+          <ScalarProperty Name="WaterLevel" ColumnName="WaterLevel" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusMsg" ColumnName="StatusMsg" />
+          <ScalarProperty Name="NStrunaId" ColumnName="NStrunaId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Task_Device">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.Task_Device)">
+        <MappingFragment StoreEntitySet="Task_Device">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date_LastLine_Struna" ColumnName="Date_LastLine_Struna" />
+          <ScalarProperty Name="Date_LastLine_Cassa" ColumnName="Date_LastLine_Cassa" />
+          <ScalarProperty Name="Name_Task" ColumnName="Name_Task" />
+          <ScalarProperty Name="Period_Task" ColumnName="Period_Task" />
+          <ScalarProperty Name="Type_Device" ColumnName="Type_Device" />
+          <ScalarProperty Name="Zip_Dir" ColumnName="Zip_Dir" />
+          <ScalarProperty Name="NObjectId" ColumnName="NObjectId" />
+          <ScalarProperty Name="CountDaySave" ColumnName="CountDaySave" />
+          <ScalarProperty Name="Period_Ping" ColumnName="Period_Ping" />
+          <ScalarProperty Name="Is_TaskOk" ColumnName="Is_TaskOk" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusMsg" ColumnName="StatusMsg" />
+          <ScalarProperty Name="Type_Task" ColumnName="Type_Task" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestTables">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDb.TestTable)">
+        <MappingFragment StoreEntitySet="TestTables">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

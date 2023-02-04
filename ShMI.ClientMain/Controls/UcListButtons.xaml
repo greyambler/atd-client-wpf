@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="ShMI.ClientMain.Controls.UcListButtons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:modules="clr-namespace:ShMI.ClientMain.Modules" 
+            
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="150">
+
+    <!--d:DataContext="{d:DesignInstance Type=modules:ModuleMainWindow}"-->
+
+
+    <ListView x:Name="listButton" HorizontalContentAlignment="Stretch" Margin="1,0"
+              Style="{StaticResource ListBoxVertical}"
+              Width="{Binding WidthListButton}"
+              >
+        
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+        </ListView.ItemContainerStyle>
+
+        <!--<TextBlock Grid.Column="1" Grid.Row="0" Margin="40,0,40,0" Text="{Binding IsExistItemMain}"
+                TextAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="MagistralC" />-->
+
+
+        <Button Name="btn_Main" Content="Главное окно" Tag="Главное окно" Margin="0,3"
+                Style="{StaticResource ButtonRound_Change}" Click="BtnMain_Click" />
+
+        <Button Name="btn_Add" Content="Добавить" Tag="Добавить" Margin="0,3"
+                Style="{StaticResource ButtonRound_Change}" Click="BtnAdd_Click"/>
+
+        <Button Name="btn_Edit" Content="Редактор" Tag="Редактор" Margin="0,3" Visibility="{Binding IsExistItemMain}"
+                Style="{StaticResource ButtonRound_Change}" Click="BtnEdit_Click"/>
+
+        <Button Name="btn_Delete" Content="Удалить" Tag="Удалить" Margin="0,3" Visibility="{Binding IsExistItemMain}"
+                Style="{StaticResource ButtonRound_Change}" Click="BtnDelete_Click"/>
+
+        <Button Name="btn_Util" Content="Утилита" Tag="Утилита" Margin="0,3" Visibility="{Binding IsExistItemMain}"
+                Style="{StaticResource ButtonRound_Change}" Click="BtnUtil_Click"/>
+
+    </ListView>
+</UserControl>

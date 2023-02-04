@@ -1,0 +1,61 @@
+﻿<Window x:Name="window" x:Class="ShMI.ClientMain.WindDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:module="clr-namespace:ShMI.ClientMain.Modules" 
+        Topmost="True" WindowState="Minimized" WindowStyle="None"
+        mc:Ignorable="d"
+        Title="Сообщение" Width="540" Height="199"
+        Loaded="Window_Loaded">
+
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch" Width="Auto" Height="Auto" ShowGridLines="False"
+          Background="{Binding Mode=OneWay, Source={StaticResource my_Fill_Rectangles}}">
+        <Grid.DataContext>
+            <module:ModuleWindDialog/>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Margin="0,0,0,0" x:Name="img_dialog"
+                Source="{Binding IconTypeWindow}" Width="Auto"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" />
+
+
+        <TextBlock x:Name="txt_dialog" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"  
+                   FontSize="11" TextAlignment="Justify" TextWrapping="Wrap"
+                   Foreground="{DynamicResource Shr_Colors}" FontWeight="Normal" HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch" Width="Auto" Height="Auto" Margin="0,10" Opacity="1"
+                   Background="{x:Null}" />
+
+
+        <Button x:Name="btn_yes" Grid.Row="1" Grid.Column="2" 
+                HorizontalAlignment="Center" Margin="4" Style="{StaticResource ButtonRound_Change}" 
+                VerticalAlignment="Center" FontWeight="Bold"
+                Cursor="Hand" Height="Auto" Visibility="Collapsed"
+                Tag="Да" Content="Да" Click="Btn_yes_Click"/>
+
+        <Button x:Name="btn_no" Grid.Row="1" Grid.Column="3" 
+                HorizontalAlignment="Center" Margin="4" Style="{StaticResource ButtonRound_Change}" 
+                VerticalAlignment="Center" FontWeight="Bold"
+                Cursor="Hand" Height="Auto" Visibility="Collapsed"
+                Tag="Нет" Content="Нет" Click="Btn_no_Click"/>
+        
+        <Button x:Name="btn_cancel" Grid.Row="1" Grid.Column="3" 
+                HorizontalAlignment="Center" Margin="4" Style="{StaticResource ButtonRound_Change}" 
+                VerticalAlignment="Center" FontWeight="Bold"
+                Cursor="Hand" Height="Auto" Visibility="Visible"
+                Tag="OK" Content="ОК" Click="Btn_cancel_Click"/>
+
+
+    </Grid>
+</Window>
