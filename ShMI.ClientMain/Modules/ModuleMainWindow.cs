@@ -129,9 +129,9 @@ namespace ShMI.ClientMain.Modules
             catch (Exception er)
             {
                 //MethodBase.GetCurrentMethod().Name.SetLogServiceError(this, er);
-
                 //string msg = string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
-                //_ = new WindDialog(msg, _FontSize: 16, IsError: true).ShowDialog();
+
+                _ = new WindDialog(WindDialog.DialogType.Error, $"\n{er.Message}\n", _FontSize: 16).ShowDialog();
             }
             return "";
         }

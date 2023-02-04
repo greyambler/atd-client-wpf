@@ -371,24 +371,24 @@ namespace ShMI.BaseMain
                 switch (nameItem)
                 {
                     case "TASK":
+                    {
+                        foreach (Task_Device item in db.Task_Device.ToList())
                         {
-                            foreach (Task_Device item in db.Task_Device.ToList())
+                            if (int.TryParse(item.Name_Task.Replace(nameItem, ""), out int t))
                             {
-                                if (int.TryParse(item.Name_Task.Replace(nameItem, ""), out int t))
+                                if (i < t)
                                 {
-                                    if (i < t)
-                                    {
-                                        i = t;
-                                        i++;
-                                    }
-                                    else if (i == t)
-                                    {
-                                        i++;
-                                    }
+                                    i = t;
+                                    i++;
+                                }
+                                else if (i == t)
+                                {
+                                    i++;
                                 }
                             }
-                            break;
                         }
+                        break;
+                    }
                     default: break;
                 }
                 foreach (NCassa item in db.NCassas.ToList())
@@ -730,25 +730,7 @@ namespace ShMI.BaseMain
         public Task_Device(Task_Device item)
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
-            Date_LastLine_Struna = item.Date_LastLine_Struna == new DateTime() ? null : item.Date_LastLine_Struna;
-            Date_LastLine_Cassa = item.Date_LastLine_Cassa == new DateTime() ? null : item.Date_LastLine_Cassa;
-            Name_Task = item.Name_Task;
-            Period_Task = item.Period_Task;
-            Type_Device = item.Type_Device;
-            Zip_Dir = item.Zip_Dir;
-            NObjectId = item.NObjectId;
-            CountDaySave = Type_Device == "zip" || Type_Device == "MSG_Water" || Type_Device == "MSG_Fuel"
-                ? 0
-                : (item.CountDaySave > 10) ? 10 : item.CountDaySave;
-
-
-            Period_Ping = item.Period_Ping;
-            Is_TaskOk = item.Is_TaskOk;
-            Status = item.Status;
-            Type_Task = item.Type_Task;
-
-            //StatusMsg = item.StatusMsg;
-            //NObject = item.NObject;
+            ChangeValueItem(item);
         }
 
         public Task_Device(string TypeName)
@@ -760,6 +742,7 @@ namespace ShMI.BaseMain
             Type_Device = "zip";
             Zip_Dir = Zip_Dir_Def;
         }
+
         public void InitListType_Device()
         {
             ListType_Device = new List<string>{
@@ -780,7 +763,6 @@ namespace ShMI.BaseMain
             get; set;
         }
 
-
         public void ChangeValueItem(Task_Device item)
         {
             Date_LastLine_Struna = item.Date_LastLine_Struna == new DateTime() ? null : item.Date_LastLine_Struna;
@@ -790,13 +772,14 @@ namespace ShMI.BaseMain
             Type_Device = item.Type_Device;
             Zip_Dir = item.Zip_Dir;
             NObjectId = item.NObjectId;
-            CountDaySave = item.CountDaySave;
+            CountDaySave = Type_Device == "zip" || Type_Device == "MSG_Water" || Type_Device == "MSG_Fuel"
+                ? 0
+                : (item.CountDaySave > 10) ? 10 : item.CountDaySave;
             Period_Ping = item.Period_Ping;
             Is_TaskOk = item.Is_TaskOk;
             Status = item.Status;
             Type_Task = item.Type_Task;
         }
-
 
         public TimeSpan TimeSpan_EquipmentPeriodicity
         {
@@ -808,6 +791,7 @@ namespace ShMI.BaseMain
             }
             set => MChangeProperty = "Period";
         }
+
         public string String_EquipmentPeriodicity
         {
             get => string.Format("{0} {1}:{2}:{3}",
@@ -843,5 +827,8 @@ namespace ShMI.BaseMain
         }
         //
         public string Error => null;
+
+        // для  JsonConvert.DeserializeObject
+        public string NObjectId_Name { get; set; }
     }
 }

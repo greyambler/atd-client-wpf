@@ -532,12 +532,12 @@ namespace ShMI.BaseMain
                 {
                     foreach (Task_Device item in ListItems)
                     {
-                        //NObject nObject = db.NObjects.FirstOrDefault(s => s.Name_Object == item.NObjectId_Name);
-                        //if (nObject != null)
-                        //{
-                        //    item.NObjectId = nObject.Id;
-                        //    db.SaveTask_Device(item);
-                        //}
+                        NObject nObject = db.NObjects.FirstOrDefault(s => s.Name_Object == item.NObjectId_Name);
+                        if (nObject != null)
+                        {
+                            item.NObjectId = nObject.Id;
+                            db.SaveTask_Device(item);
+                        }
                     }
                 };
             }
