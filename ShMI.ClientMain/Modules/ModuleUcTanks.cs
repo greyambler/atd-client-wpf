@@ -16,8 +16,10 @@ namespace ShMI.ClientMain.Modules
         }
         private void InitTables()
         {
-            GetNStruna();
-            GetNTank();
+            GetRowsNTank();
+
+            //GetNStruna();
+            //GetNTank();
         }
 
         #region IListButtonsService
@@ -66,9 +68,11 @@ namespace ShMI.ClientMain.Modules
                     using (EntitiesDb db = GetDb)
                     {
                         db.SaveNTank(CurrentItem);
+
+                        GetRowsNTank();
+
+                        SetWidthListButton(new UcTanks(this, null));
                     }
-                    InitTables();
-                    SetWidthListButton(new UcTanks(this, CurrentItem));
                 }
             }
 

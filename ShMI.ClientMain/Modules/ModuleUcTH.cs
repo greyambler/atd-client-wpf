@@ -19,22 +19,29 @@ namespace ShMI.ClientMain.Modules
         }
         private void InitTables(NCassa CurrentItem = null)
         {
-            //if (CurrentItem != null && CurrentItem.Name.StartsWith("TH"))
-            //{
-            //    GetOnlyNCassa(CurrentItem?.NObjectId.ToString());
-            //}
-            //else
-            //{
-            //    GetNCassa();
-            //}
-
-            //GetNObject(CurrentItem?.NObjectId.ToString());
-            //GetReCodesTable();
-            //GetNTank(CurrentItem?.NObjectId.ToString());            
-            ////GetTask_Device(CurrentItem?.NObjectId.ToString());
+            if (!currentItem.ThisNotNull())
+            {
+                GetRowsNObject();
+                GetRowsTask_Device();
+                GetRowsNCassa();
+                GetRowsNTank();
+                GetRowsNStruna();
+                GetRowsReCodesTable();
+            }
+            else
+            {
+                GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
+                GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
+                GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
+                GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
+                GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
+            }
         }
 
-        public UcSpinner UcSpinner { get; set; }
+        public UcSpinner UcSpinner
+        {
+            get; set;
+        }
 
         #region IListButtonsService
 
@@ -75,9 +82,9 @@ namespace ShMI.ClientMain.Modules
                     using (EntitiesDb db = GetDb)
                     {
                         db.SaveNCassa(CurrentItem);
+                        GetRowsNCassa();
+                        SetWidthListButton(new UcTH(this, null));
                     }
-                    InitTables();
-                    SetWidthListButton(new UcTH(this, CurrentItem));
                 }
             }
         }
@@ -143,6 +150,7 @@ namespace ShMI.ClientMain.Modules
                 currentNObject = value;
                 CurrentItem.NObjectId = currentNObject.ThisNotNull() ? currentNObject.Id : Guid.Empty;
                 MChangeProperty = "CurrentNObject";
+                InitTables(currentItem);
             }
         }
 

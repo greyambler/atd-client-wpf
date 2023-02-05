@@ -19,8 +19,7 @@ namespace ShMI.ClientMain.Modules
         }
         private void InitTables()
         {
-            //GetNObject();
-            //GetNCassa();
+            GetRowsNCassa();
         }
 
         #region IListButtonsService
@@ -63,11 +62,14 @@ namespace ShMI.ClientMain.Modules
                     using (EntitiesDb db = GetDb)
                     {
                         db.SaveNCassa(CurrentItem);
+
+                        //Guid idCurrentItem = CurrentItem.Id;
+                        //InitTables();
+                        GetRowsNCassa();
+                        //CurrentItem = ListTH.FirstOrDefault(s => s.Id == idCurrentItem);
+                        SetWidthListButton(new UcCassa(this, null));
+
                     }
-                    Guid idCurrentItem = CurrentItem.Id;
-                    InitTables();
-                    CurrentItem = ListTH.FirstOrDefault(s => s.Id == idCurrentItem);
-                    SetWidthListButton(new UcCassa(this, CurrentItem));
                 }
             }
         }

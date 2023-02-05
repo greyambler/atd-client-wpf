@@ -17,7 +17,7 @@ namespace ShMI.ClientMain.Modules
         }
         private void InitTables()
         {
-            GetReCodesTable();
+            GetRowsReCodesTable();
         }
 
         #region IListButtonsService
@@ -57,11 +57,12 @@ namespace ShMI.ClientMain.Modules
                     using (EntitiesDb db = GetDb)
                     {
                         db.SaveReCodesTable(CurrentItem);
+
+                        //Guid idCurrentItem = CurrentItem.Id;
+                        GetRowsReCodesTable();
+                        //CurrentItem = ListReCodesTable.FirstOrDefault(s => s.Id == idCurrentItem);
+                        SetWidthListButton(new UcCodesGoods(this, null));
                     }
-                    Guid idCurrentItem = CurrentItem.Id;
-                    InitTables();
-                    CurrentItem = ListReCodesTable.FirstOrDefault(s => s.Id == idCurrentItem);
-                    SetWidthListButton(new UcCodesGoods(this, CurrentItem));
                 }
             }
         }

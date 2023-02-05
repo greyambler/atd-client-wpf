@@ -63,14 +63,13 @@ namespace ShMI.ClientMain.Modules
                 {
                     using (EntitiesDb db = GetDb)
                     {
-
                         try
                         {
                             db.ValidTask_Device(CurrentItem);
 
                             db.SaveTask_Device(CurrentItem);
-                            InitTables();
-                            SetWidthListButton(new UcTasks(this, CurrentItem));
+                            GetRowsTask_Device();
+                            SetWidthListButton(new UcTasks(this, null));
                         }
                         catch (Exception er)
                         {

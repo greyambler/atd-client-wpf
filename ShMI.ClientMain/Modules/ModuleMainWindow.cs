@@ -23,7 +23,7 @@ namespace ShMI.ClientMain.Modules
             this.WorkGrid = WorkGrid;
             this.ResourcesDict = ResourcesDict;
             this.IsAdmin = IsAdmin;
-            this.DispatcherShell = DispatcherCore;
+            DispatcherShell = DispatcherCore;
         }
 
         #region Инициализация DB ATD
@@ -33,7 +33,6 @@ namespace ShMI.ClientMain.Modules
             bool isExistObject = false;
             using (EntitiesDb db = GetDb)
             {
-                //isExistTH = db.NCassas.FirstOrDefault(s => s.Name.StartsWith("TH")).ThisNotNull();
                 isExistObject = db.NObjects.FirstOrDefault().ThisNotNull();
             }
             return isExistObject;
@@ -162,10 +161,10 @@ namespace ShMI.ClientMain.Modules
             }
         }
 
-        private System.Windows.Threading.DispatcherTimer timer;
+        private DispatcherTimer timer;
         public void StartTime()
         {
-            timer = new System.Windows.Threading.DispatcherTimer
+            timer = new DispatcherTimer
             {
                 Interval = new TimeSpan(0, 0, 1),
                 IsEnabled = true,
@@ -192,9 +191,18 @@ namespace ShMI.ClientMain.Modules
         // DispatcherShell    - Предоставляет службы для управления очередью рабочих элементов для потока.
         #region IMainWindow
 
-        public Window ShellWindow { get; }
-        public Grid WorkGrid { get; }
-        public ResourceDictionary ResourcesDict { get; }
+        public Window ShellWindow
+        {
+            get;
+        }
+        public Grid WorkGrid
+        {
+            get;
+        }
+        public ResourceDictionary ResourcesDict
+        {
+            get;
+        }
         public void SetWidthListButton(UserControl _UserControl = null, bool visual = true)
         {
             WidthListButton = !visual ? 0 : 180;
@@ -204,7 +212,10 @@ namespace ShMI.ClientMain.Modules
                 _ = WorkGrid.Children.Add(_UserControl);
             }
         }
-        public Dispatcher DispatcherShell { get; set; }
+        public Dispatcher DispatcherShell
+        {
+            get; set;
+        }
 
         // Св-во определяет работу администратора те показывает скрытые св-ва кнопки и тд.
         private bool isAdmin = true;
@@ -224,18 +235,85 @@ namespace ShMI.ClientMain.Modules
 
         #region IListButtonsService
 
-        public virtual void AddItem() { }
-        public virtual void EditItem() { }
-        public virtual void DeleteItem() { }
-        public virtual void SaveItem() { }
-        public virtual void CancelItem() { }
-        public virtual void UtilItem() { }
-        public virtual void Cancel() { }
+        public virtual void AddItem()
+        {
+        }
+        public virtual void EditItem()
+        {
+        }
+        public virtual void DeleteItem()
+        {
+        }
+        public virtual void SaveItem()
+        {
+        }
+        public virtual void CancelItem()
+        {
+        }
+        public virtual void UtilItem()
+        {
+        }
+        public virtual void Cancel()
+        {
+        }
 
         #endregion IListButtonsService
 
         // Общие объекты для главных окон UC.
         #region ObservableCollection 
+
+        public enum TypeTable
+        {
+            NCassa,
+            NObject,
+            NTank,
+            NStruna,
+            Task_Device
+        }
+
+        public void GetItemsFromNCassa(NCassa CurrentItem, TypeTable typeTable)
+        {
+            NObject currentNobject = null;
+
+            if (CurrentItem.ThisNotNull() && CurrentItem.NObjectId != Guid.Empty)
+            {
+                using (EntitiesDb db = GetDb)
+                {
+                    currentNobject = db.NObjects.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+                }
+            }
+            switch (typeTable)
+            {
+                case TypeTable.NCassa:
+                    {
+                        GetRowsNCassaNotTH(currentNobject);
+                        break;
+                    }
+                case TypeTable.NObject:
+                    {
+                        GetRowsNObject(currentNobject);
+                        break;
+                    }
+                case TypeTable.NTank:
+                    {
+                        GetRowsNTank(currentNobject);
+                        break;
+                    }
+                case TypeTable.NStruna:
+                    {
+                        GetRowsNStruna(currentNobject);
+                        break;
+                    }
+                case TypeTable.Task_Device:
+                    {
+                        GetRowsTask_Device(currentNobject);
+                        break;
+                    }
+
+                default:
+                    break;
+            }
+        }
 
         #region TestTable
 
@@ -258,7 +336,9 @@ namespace ShMI.ClientMain.Modules
             {
             }
         }
+
         private ObservableCollection<TestTable> listTestTable;
+
         public ObservableCollection<TestTable> ListTestTable
         {
             get => listTestTable;
@@ -273,30 +353,30 @@ namespace ShMI.ClientMain.Modules
 
         #region NObject
 
-        public void GetRowsNObject(string IdNObject = "")
+        public void GetRowsNObject(NObject currentItem = null)
         {
-            try
+            string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
+            _ = Guid.TryParse(Id, out Guid idObj);
+
+            listNObject = new ObservableCollection<NObject>();
+
+            using (EntitiesDb db = GetDb)
             {
-                using (EntitiesDb db = GetDb)
+
+                List<NObject> listLocal = idObj != Guid.Empty
+                    ? db.NObjects.Where(s => s.Id == idObj).ToList()
+                    : db.NObjects.ToList();
+
+                foreach (NObject item in listLocal)
                 {
-                    listNObject = new ObservableCollection<NObject>();
-
-                    _ = Guid.TryParse(IdNObject, out Guid idObj);
-
-                    List<NObject> listLocal = idObj != Guid.Empty ? db.NObjects.Where(s => s.Id == idObj).ToList() : db.NObjects.ToList();
-
-                    foreach (NObject item in listLocal)
-                    {
-                        listNObject.Add(item);
-                    }
-                    ListNObject = listNObject;
+                    listNObject.Add(item);
                 }
             }
-            catch (Exception er)
-            {
-            }
+            ListNObject = listNObject;
         }
+
         private ObservableCollection<NObject> listNObject;
+
         public ObservableCollection<NObject> ListNObject
         {
             get => listNObject;
@@ -311,25 +391,22 @@ namespace ShMI.ClientMain.Modules
 
         #region ReCodesTable
 
-        public void GetReCodesTable()
+        public void GetRowsReCodesTable()
         {
-            try
+            listReCodesTable = new ObservableCollection<ReCodesTable>();
+            using (EntitiesDb db = GetDb)
             {
-                using (EntitiesDb db = GetDb)
+                List<ReCodesTable> listLocal = db.ReCodesTables.ToList();
+                foreach (ReCodesTable item in listLocal)
                 {
-                    listReCodesTable = new ObservableCollection<ReCodesTable>();
-                    foreach (ReCodesTable item in db.ReCodesTables.ToList())
-                    {
-                        listReCodesTable.Add(item);
-                    }
-                    ListReCodesTable = listReCodesTable;
+                    listReCodesTable.Add(item);
                 }
             }
-            catch (Exception er)
-            {
-            }
+            ListReCodesTable = listReCodesTable;
         }
+
         private ObservableCollection<ReCodesTable> listReCodesTable;
+
         public ObservableCollection<ReCodesTable> ListReCodesTable
         {
             get => listReCodesTable;
@@ -344,17 +421,18 @@ namespace ShMI.ClientMain.Modules
 
         #region NCassa
 
-        public void GetNCassa(string nObjectId = "")
+        public void GetRowsNCassa(NObject currentItem = null)
         {
+            string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
+            _ = Guid.TryParse(Id, out Guid idObj);
+
+            listNCassa = new ObservableCollection<NCassa>();
+
+            listTH = new ObservableCollection<NCassa>();
+
             using (EntitiesDb db = GetDb)
             {
-                listNCassa = new ObservableCollection<NCassa>();
-
-                _ = Guid.TryParse(nObjectId, out Guid idObj);
-
                 List<NCassa> listLocal = idObj != Guid.Empty ? db.NCassas.Where(s => s.NObjectId == idObj).ToList() : db.NCassas.ToList();
-
-                listTH = new ObservableCollection<NCassa>();
 
                 foreach (NCassa item in listLocal)
                 {
@@ -367,18 +445,24 @@ namespace ShMI.ClientMain.Modules
                         listTH.Add(item);
                     }
                 }
-                ListNCassa = listNCassa;
-                ListTH = listTH;
+
             }
+
+            ListNCassa = listNCassa;
+
+            ListTH = listTH;
+
         }
-        public void GetOnlyNCassa(string nObjectId = "")
+
+        public void GetRowsNCassaNotTH(NObject currentItem = null)
         {
+            string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
+            _ = Guid.TryParse(Id, out Guid idObj);
+
+            listNCassa = new ObservableCollection<NCassa>();
+
             using (EntitiesDb db = GetDb)
             {
-                listNCassa = new ObservableCollection<NCassa>();
-
-                _ = Guid.TryParse(nObjectId, out Guid idObj);
-
                 List<NCassa> listLocal = idObj != Guid.Empty ? db.NCassas.Where(s => s.NObjectId == idObj).ToList() : db.NCassas.ToList();
 
                 foreach (NCassa item in listLocal)
@@ -388,10 +472,14 @@ namespace ShMI.ClientMain.Modules
                         listNCassa.Add(item);
                     }
                 }
-                ListNCassa = listNCassa;
             }
+
+            ListNCassa = listNCassa;
+
         }
+
         private ObservableCollection<NCassa> listNCassa;
+
         public ObservableCollection<NCassa> ListNCassa
         {
             get => listNCassa;
@@ -401,7 +489,9 @@ namespace ShMI.ClientMain.Modules
                 MChangeProperty = "ListNCassa";
             }
         }
+
         private ObservableCollection<NCassa> listTH;
+
         public ObservableCollection<NCassa> ListTH
         {
             get => listTH;
@@ -416,50 +506,31 @@ namespace ShMI.ClientMain.Modules
 
         #region NTank
 
-        public void GetNTank(string IdNObject = "")
+        public void GetRowsNTank(NObject currentItem = null)
         {
+            string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
+            _ = Guid.TryParse(Id, out Guid idObj);
+
+            listNTank = new ObservableCollection<NTank>();
+
             using (EntitiesDb db = GetDb)
             {
-                listNTank = new ObservableCollection<NTank>();
 
-                _ = Guid.TryParse(IdNObject, out Guid idObj);
-
-                List<NTank> listLocal = new List<NTank>();
-
-                if (idObj == Guid.Empty)
-                {
-                    listLocal = db.NTanks.ToList();
-                }
-                else
-                {
-
-
-                    listLocal = db.NTanks.Include("NStruna").Where(s => s.NStruna.NObjectId == idObj).ToList();
-
-                    //List<NStruna> listStruna = db.NStrunas.Where(s => s.NObjectId == idObj).ToList();
-
-                    //foreach (NStruna struna in listStruna)
-                    //{
-                    //    List<NTank> tankList = db.NTanks.Where(s => s.NStrunaId == struna.Id).ToList();
-
-                    //    foreach (NTank item in tankList)
-                    //    {
-                    //        if (listLocal.FirstOrDefault(s => s.Id == item.Id) == null)
-                    //        {
-                    //            listLocal.Add(item);
-                    //        }
-                    //    }
-                    //}
-                }
+                List<NTank> listLocal = idObj != Guid.Empty
+                    ? db.NTanks.Include("NStruna")//.Where(s => s.NObjectId == idObj).ToList()
+                    .Where(s => s.NStruna.NObjectId == idObj).ToList()
+                    : db.NTanks.ToList();
 
                 foreach (NTank item in listLocal)
                 {
                     listNTank.Add(item);
                 }
-                ListNTank = listNTank;
             }
+            ListNTank = listNTank;
         }
+
         private ObservableCollection<NTank> listNTank;
+
         public ObservableCollection<NTank> ListNTank
         {
             get => listNTank;
@@ -474,24 +545,29 @@ namespace ShMI.ClientMain.Modules
 
         #region NStruna
 
-        public void GetNStruna(string nObjectId = "")
+        public void GetRowsNStruna(NObject currentItem = null)
         {
+            string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
+            _ = Guid.TryParse(Id, out Guid idObj);
+
+            listNStruna = new ObservableCollection<NStruna>();
+
             using (EntitiesDb db = GetDb)
             {
-                listNStruna = new ObservableCollection<NStruna>();
-
-                _ = Guid.TryParse(nObjectId, out Guid idObj);
-
-                List<NStruna> listLocal = idObj != Guid.Empty ? db.NStrunas.Where(s => s.NObjectId == idObj).ToList() : db.NStrunas.ToList();
+                List<NStruna> listLocal = idObj != Guid.Empty
+                    ? db.NStrunas.Where(s => s.NObjectId == idObj).ToList()
+                    : db.NStrunas.ToList();
 
                 foreach (NStruna item in listLocal)
                 {
                     listNStruna.Add(item);
                 }
-                ListNStruna = listNStruna;
             }
+            ListNStruna = listNStruna;
         }
+
         private ObservableCollection<NStruna> listNStruna;
+
         public ObservableCollection<NStruna> ListNStruna
         {
             get => listNStruna;
@@ -503,6 +579,7 @@ namespace ShMI.ClientMain.Modules
         }
 
         public List<string> listTypeLevel = new List<string>() { "NEW_servise", "struna", /*"veederoot", */ "tlg", "DOMS" };
+
         public List<string> ListTypeLevel
         {
             get => listTypeLevel;
@@ -513,22 +590,19 @@ namespace ShMI.ClientMain.Modules
 
         #region Task_Device
 
-        public void GetRowsTask_Device()//Task_Device task_Device = null)
+        public void GetRowsTask_Device(NObject currentItem = null)
         {
+            string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
+            _ = Guid.TryParse(Id, out Guid idObj);
+
+            listTask_Device = new ObservableCollection<Task_Device>();
+
             using (EntitiesDb db = GetDb)
             {
-                listTask_Device = new ObservableCollection<Task_Device>();
-                Guid idObj = Guid.Empty;
-
-                //if (task_Device.ThisNotNull())
-                //{
-                //    _ = Guid.TryParse(task_Device.NObjectId.ToString(), out idObj);
-                //}
 
                 List<Task_Device> listLocal = idObj != Guid.Empty
                     ? db.Task_Device.Where(s => s.NObjectId == idObj).ToList()
                     : db.Task_Device.ToList();
-
 
                 foreach (Task_Device item in listLocal)
                 {
@@ -536,11 +610,13 @@ namespace ShMI.ClientMain.Modules
                     item.InitListType_Device();
                     listTask_Device.Add(item);
                 }
-
-                ListTask_Device = listTask_Device;
             }
+            ListTask_Device = listTask_Device;
+
         }
+
         private ObservableCollection<Task_Device> listTask_Device;
+
         public ObservableCollection<Task_Device> ListTask_Device
         {
             get => listTask_Device;
@@ -561,72 +637,7 @@ namespace ShMI.ClientMain.Modules
             return task_Device;
         }
 
-
         #endregion Task_Device
-
-        //#region Type_Device
-
-        //public void GetTypeTask()
-        //{
-        //    //string typeTask = new string { };
-
-        //    //listTypeTask = new ObservableCollection<string>();
-
-
-        //    ////foreach (string item in TypeTask)
-        //    ////{
-        //    ////    listTask_Device.Add(item);
-        //    ////}
-
-
-        //    //ListTypeTask = listTypeTask;
-        //}
-
-        ////public List<string> List_Type_Device
-        ////{
-        ////    get; set;
-        ////}
-
-
-        ////public enum TypeTask
-        ////{
-        ////    th = 1,
-        ////    zip = 2,
-        ////    auditarch = 3,
-        ////    level = 4,
-        ////    cassa = 5,
-        ////    MSG_Water = 6,
-        ////    MSG_Fuel = 7,
-        ////};
-
-        ////public void GetTypeTask()
-        ////{
-        ////    TypeTask typeTask = new TypeTask { };
-
-        ////    listTypeTask = new ObservableCollection<string>();
-
-
-        ////    //foreach (string item in TypeTask)
-        ////    //{
-        ////    //    listTask_Device.Add(item);
-        ////    //}
-
-
-        ////    ListTypeTask = listTypeTask;
-        ////}
-        ////private ObservableCollection<string> listTypeTask;
-        ////public ObservableCollection<string> ListTypeTask
-        ////{
-        ////    get => listTypeTask;
-        ////    set
-        ////    {
-        ////        listTypeTask = value;
-        ////        MChangeProperty = "ListTypeTask";
-        ////    }
-        ////}
-
-        //#endregion Type_Device
-
 
         #endregion ObservableCollection
 

@@ -1,7 +1,6 @@
 ﻿using ShMI.BaseMain;
 using ShMI.ClientMain.Controls;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -15,19 +14,25 @@ namespace ShMI.ClientMain.Modules
         {
             InitTables();
         }
-        private void InitTables(NObject CurrentItem = null)
+        private void InitTables(NObject currentItem = null)
         {
-            //if (CurrentItem == null)
-            //{
-            //    GetNObject();
-            //}
-            //GetNCassa(CurrentItem?.Id.ToString());
-            //GetNTank(CurrentItem?.Id.ToString());
-            ////GetTask_Device(CurrentItem?.Id.ToString());
-            //GetNStruna(CurrentItem?.Id.ToString());
-
-            GetRowsNObject();
-
+            if (!currentItem.ThisNotNull())
+            {
+                GetRowsNObject();
+                GetRowsTask_Device();
+                GetRowsNCassa();
+                GetRowsNTank();
+                GetRowsNStruna();
+                GetRowsReCodesTable();
+            }
+            else
+            {
+                GetRowsTask_Device(currentItem);
+                GetRowsNCassa(currentItem);
+                GetRowsNTank(currentItem);
+                GetRowsNStruna(currentItem);
+                GetRowsReCodesTable();
+            }
         }
 
         #region IListButtonsService
@@ -58,7 +63,7 @@ namespace ShMI.ClientMain.Modules
         {
             if (string.IsNullOrEmpty(CurrentItem.Name_Object) || string.IsNullOrEmpty(CurrentItem.SiteID))
             {
-                _= new WindDialog(WindDialog.DialogType.Error,"\nНе все обязательные поля заполнены.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
+                _ = new WindDialog(WindDialog.DialogType.Error, "\nНе все обязательные поля заполнены.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }
             else
             {
@@ -66,12 +71,19 @@ namespace ShMI.ClientMain.Modules
                 CurrentItem.Id == Guid.Empty ? $"\nДобавить TestTable - \"{CurrentItem.Name_Object}\"?\n" : $"\nСохранить TestTable - \"{CurrentItem.Name_Object}\"?\n", _FontSize: 16);
                 if ((bool)d.ShowDialog())
                 {
-                    using (EntitiesDb db = GetDb)
+                    try
                     {
-                        db.SaveNObject(CurrentItem);
+                        using (EntitiesDb db = GetDb)
+                        {
+                            db.SaveNObject(CurrentItem);
+                            GetRowsNObject();
+                            SetWidthListButton(new UcObjects(this, null));
+                        }
                     }
-                    InitTables();
-                    SetWidthListButton(new UcObjects(this, CurrentItem));
+                    catch (Exception er)
+                    {
+                        _ = new WindDialog(WindDialog.DialogType.Error, $"\nОшибка сохранения.\n{er.Message}", _FontSize: 16).ShowDialog();
+                    }
                 }
             }
         }
@@ -81,7 +93,6 @@ namespace ShMI.ClientMain.Modules
         }
         public override void Cancel()
         {
-            //_ = new UcObjects(ModuleMain);
             SetWidthListButton(new UcObjects(this, null));
         }
 
@@ -94,45 +105,48 @@ namespace ShMI.ClientMain.Modules
             set
             {
                 currentItem = value;
+                IsExistItemMain = value.ThisNotNull() ? Visibility.Visible : Visibility.Collapsed;
                 MChangeProperty = "CurrentItem";
-                IsExistItemMain = value.ThisNotNull() ? Visibility.Visible : Visibility.Collapsed; InitTables(currentItem);
                 InitTables(currentItem);
             }
         }
+        #region EditItem
 
-        private NCassa currentNCassa;
-        public NCassa CurrentNCassa
-        {
-            get => currentNCassa;
-            set
-            {
-                currentNCassa = value;
-                MChangeProperty = "CurrentNCassa";
-            }
-        }
+        #endregion EditItem
+
+        //private NCassa currentNCassa;
+        //public NCassa CurrentNCassa
+        //{
+        //    get => currentNCassa;
+        //    set
+        //    {
+        //        currentNCassa = value;
+        //        MChangeProperty = "CurrentNCassa";
+        //    }
+        //}
 
 
-        private NStruna currentNStruna;
-        public NStruna CurrentNStruna
-        {
-            get => currentNStruna;
-            set
-            {
-                currentNStruna = value;
-                MChangeProperty = "CurrentNStruna";
-            }
-        }
+        //private NStruna currentNStruna;
+        //public NStruna CurrentNStruna
+        //{
+        //    get => currentNStruna;
+        //    set
+        //    {
+        //        currentNStruna = value;
+        //        MChangeProperty = "CurrentNStruna";
+        //    }
+        //}
 
-        private Task_Device currentTask_Device;
-        public Task_Device CurrentTask_Device
-        {
-            get => currentTask_Device;
-            set
-            {
-                currentTask_Device = value;
-                MChangeProperty = "CurrentTask_Device";
-            }
-        }
+        //private Task_Device currentTask_Device;
+        //public Task_Device CurrentTask_Device
+        //{
+        //    get => currentTask_Device;
+        //    set
+        //    {
+        //        currentTask_Device = value;
+        //        MChangeProperty = "CurrentTask_Device";
+        //    }
+        //}
 
     }
 }

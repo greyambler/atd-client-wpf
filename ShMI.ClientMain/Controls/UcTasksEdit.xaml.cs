@@ -31,10 +31,10 @@ namespace ShMI.ClientMain.Controls
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ControllersVisible();
-            InitDelTable();
+            InitSkipTable();
         }
 
-        private void InitDelTable()
+        private void InitSkipTable()
         {
             if (Module.CurrentItem != null && Module.CurrentItem.Status != null && Module.CurrentItem.Status != "")
             {

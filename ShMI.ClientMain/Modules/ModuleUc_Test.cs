@@ -54,10 +54,11 @@ namespace ShMI.ClientMain.Modules
                 using (EntitiesDb db = GetDb)
                 {
                     db.SaveTestTable(CurrentItem);
-                }
-                InitTables();
 
-                SetWidthListButton(new Uc_Test(this, CurrentItem));
+                    GetTestTable();
+
+                    SetWidthListButton(new Uc_Test(this, null));
+                }
             }
         }
         public override void UtilItem()
