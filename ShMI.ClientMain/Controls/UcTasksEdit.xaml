@@ -5,9 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ShMI.ClientMain.Controls"
         xmlns:controls="clr-namespace:ShMI.ClientMain.MainWindowControls"
-        xmlns:modules="clr-namespace:ShMI.ClientMain.Modules"
-        d:DataContext="{d:DesignInstance Type=modules:ModuleUcTasks}" mc:Ignorable="d" d:DesignHeight="680"
-        d:DesignWidth="800" ToolTip="Настройка задач" x:Name="ucTanks" Loaded="UcTanks_Loaded">
+        xmlns:modules="clr-namespace:ShMI.ClientMain.Modules" mc:Ignorable="d" d:DesignHeight="680" d:DesignWidth="800"
+        ToolTip="Настройка задач" x:Name="ucTanks" Loaded="UcTanks_Loaded">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -22,7 +21,7 @@
             <TextBlock Grid.Column="1" Grid.Row="0" Margin="40,0,40,0" Text="{Binding ToolTip, ElementName=ucTanks}"
                     TextAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="MagistralC" />
             <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" BorderThickness=".1">
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -40,7 +39,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="*" MinWidth="370" />
+                                <ColumnDefinition Width="*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="Название задачи" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" />
@@ -53,12 +52,12 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="153*" MinWidth="370" />
+                                <ColumnDefinition Width="153*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="Название объекта" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" />
-                            <ComboBox Grid.Column="1" MinWidth="120" Height="23" Margin="3,0,0,0"
-                                    DisplayMemberPath="Name_Object" SelectedItem="{Binding Path=CurrentNObject}"
+                            <ComboBox Grid.Column="1" Height="23" DisplayMemberPath="Name_Object" Margin="3,0,0,0"
+                                    SelectedItem="{Binding Path=CurrentNObject}"
                                     ItemsSource="{Binding Path=ListNObject}" VerticalAlignment="Center"></ComboBox>
                         </Grid>
                     </Border>
@@ -66,11 +65,11 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="*" MinWidth="370" />
+                                <ColumnDefinition Width="*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="тип" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" />
-                            <ComboBox Grid.Column="1" MinWidth="120" Height="24" Margin="3,0,0,0"
+                            <ComboBox Grid.Column="1" Height="24" Margin="3,0,0,0"
                                     SelectedItem="{Binding Path=CurrentItem.Type_Device}"
                                     ItemsSource="{Binding Path=CurrentItem.ListType_Device}"
                                     SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Center" />
@@ -80,7 +79,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="*" MinWidth="370" />
+                                <ColumnDefinition Width="*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="Период опроса (c)" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" />
@@ -93,7 +92,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="*" MinWidth="370" />
+                                <ColumnDefinition Width="*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="Zip_Dir" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" />
@@ -117,10 +116,10 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="Данные уровнемер с даты" Grid.Column="0" HorizontalAlignment="Left"
-                                    Margin="3" VerticalAlignment="Center"/>
+                                    Margin="3" VerticalAlignment="Center" />
                             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness=".2" Margin="3" Padding="3">
                                 <controls:Uc_TimeHMSF
                                         Int_DateTime="{Binding Path=Date_LastLine_Struna, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true}"
@@ -135,7 +134,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Label Content="Данные касс с даты" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
-                                    VerticalAlignment="Center"/>
+                                    VerticalAlignment="Center" />
                             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness=".2" Margin="3" Padding="3">
                                 <controls:Uc_TimeHMSF
                                         Int_DateTime="{Binding Path=Date_LastLine_Cassa, UpdateSourceTrigger=PropertyChanged,  Mode=TwoWay, ValidatesOnDataErrors=true}"
@@ -147,10 +146,10 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="*" MinWidth="370" />
+                                <ColumnDefinition Width="*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="История изменений расписания с даты" Grid.Column="0"
-                                    HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center"/>
+                                    HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
                             <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="0.2" Margin="3" Padding="3">
                                 <Grid>
                                     <controls:Uc_TimeHMSF DataContext="{Binding DataContext, ElementName=MainGrid}"
@@ -167,7 +166,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="*" MinWidth="370" />
+                                <ColumnDefinition Width="*" MinWidth="110" />
                             </Grid.ColumnDefinitions>
                             <Label Content="Дней хранения" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center"

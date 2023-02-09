@@ -9,11 +9,12 @@ namespace ShMI.ClientMain.Controls
     /// </summary>
     public partial class UcObjectsEdit : UserControl
     {
-        public UcObjectsEdit(ModuleUcObjects ModuleMain, NObject EditItem)
+        public UcObjectsEdit(ModuleUcObjects ModuleMain, NObject EditItem, bool isEdit)
         {
             InitializeComponent();
             Module = ModuleMain;
             Module.CurrentItem = EditItem;
+            tb_SiteID.IsEnabled = !isEdit;
         }
 
         public ModuleUcObjects Module

@@ -14,11 +14,33 @@ namespace ShMI.ClientMain.Modules
         public ModuleUcLevelsMeter(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
+            GetRowsNStruna();
+
             InitTables();
         }
-        private void InitTables()
+        private void InitTables(NStruna CurrentItem = null)
         {
-            GetRowsNStruna();
+            if (!CurrentItem.ThisNotNull())
+            {
+                GetRowsNObject();
+                GetRowsTask_Device();
+                GetRowsNTank();
+                GetRowsNStruna();
+                GetRowsReCodesTable();
+            }
+            else
+            {
+
+                //GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
+                //GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
+                //GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
+                //GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
+                //GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
+
+                //CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+
+                CurrentTypeLevel = currentItem.Type_Level.ThisNotNull() ? ListTypeLevel.FirstOrDefault(s => s == currentItem.Type_Level) : ListTypeLevel.FirstOrDefault();
+            }
         }
 
         #region IListButtonsService
@@ -85,18 +107,20 @@ namespace ShMI.ClientMain.Modules
             set
             {
                 currentItem = value;
-                MChangeProperty = "CurrentItem";
                 IsExistItemMain = value.ThisNotNull() ? Visibility.Visible : Visibility.Collapsed;
+                InitTables(currentItem);
+                MChangeProperty = "CurrentItem";
+
             }
         }
         public NObject currentNObject;
         public NObject CurrentNObject
         {
-            get => ListNObject.FirstOrDefault(s => s.Id == currentItem.NObjectId);
+            get => currentNObject;
             set
             {
                 currentNObject = value;
-                CurrentItem.NObjectId = currentNObject.ThisNotNull() ? currentNObject.Id : Guid.Empty;
+                //CurrentItem.NObjectId = currentNObject.ThisNotNull() ? currentNObject.Id : Guid.Empty;
                 MChangeProperty = "CurrentNObject";
             }
         }
@@ -105,11 +129,11 @@ namespace ShMI.ClientMain.Modules
         public string currentTypeLevel;
         public string CurrentTypeLevel
         {
-            get => currentItem.Type_Level.ThisNotNull() ? ListTypeLevel.FirstOrDefault(s => s == currentItem.Type_Level) : ListTypeLevel.FirstOrDefault();
+            get => currentTypeLevel; // currentItem.Type_Level.ThisNotNull() ? ListTypeLevel.FirstOrDefault(s => s == currentItem.Type_Level) : ListTypeLevel.FirstOrDefault();
             set
             {
                 currentTypeLevel = value;
-                CurrentItem.Type_Level = currentTypeLevel;
+                //CurrentItem.Type_Level = currentTypeLevel;
                 MChangeProperty = "CurrentTypeLevel";
             }
         }

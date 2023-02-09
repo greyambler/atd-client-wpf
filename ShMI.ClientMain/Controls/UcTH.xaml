@@ -64,7 +64,7 @@
                         <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True"
                                 ItemsSource="{Binding Path=ListTask_Device}"
                                 RowDetailsVisibilityMode="VisibleWhenSelected"
-                                SelectedItem="{Binding Path=CurrentTask_Device}" SelectionMode="Single" Grid.Row="1">
+                                SelectionMode="Single" Grid.Row="1">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Name_Task}" Header="Название задачи"
                                         Width="1*" />
@@ -94,7 +94,7 @@
                         <TextBlock Text="Объекты" TextAlignment="Center" />
                         <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True"
                                 ItemsSource="{Binding Path=ListNObject}"
-                                SelectedItem="{Binding Mode=TwoWay, Path=CurrentItem}"
+                                SelectedItem="{Binding Mode=TwoWay, Path=CurrentNObject}"
                                 RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" Grid.Row="1">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Name_Object}" Header="Название объекта"
@@ -116,7 +116,7 @@
                         <DataGrid AutoGenerateColumns="False" Grid.Row="1" EnableRowVirtualization="True"
                                 IsReadOnly="True" ItemsSource="{Binding Path=ListNCassa}"
                                 RowDetailsVisibilityMode="VisibleWhenSelected"
-                                SelectedItem="{Binding Path=CurentNCassa}" SelectionMode="Single">
+                                SelectionMode="Single">
                             <DataGrid.Columns>
                                 <!--<DataGridTextColumn Binding="{Binding Path=NCassa_Active, Converter={StaticResource ActiveNCassa}}" Header="Активность кассы" Width="SizeToHeader"/>-->
                                 <DataGridTextColumn Binding="{Binding Path=Name}" Header="Название кассы"
@@ -158,7 +158,7 @@
                         <DataGrid AutoGenerateColumns="False" Grid.Row="1" EnableRowVirtualization="True"
                                 IsReadOnly="True" ItemsSource="{Binding Path=ListNStruna}"
                                 RowDetailsVisibilityMode="VisibleWhenSelected"
-                                SelectedItem="{Binding Path=CurrentNStruna}" SelectionMode="Single">
+                                SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Name}" Header="Название уровнемера"
                                         Width="SizeToHeader" />
@@ -184,7 +184,7 @@
                         <TextBlock Text="Резервуары" TextAlignment="Center" />
                         <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True"
                                 ItemsSource="{Binding Path=ListNTank}" RowDetailsVisibilityMode="VisibleWhenSelected"
-                                SelectedItem="{Binding Path=CurentNTank}" SelectionMode="Single" Grid.Row="1">
+                                SelectionMode="Single" Grid.Row="1">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Grade_Name}" Header="Название сорта НП"
                                         Width="1*" />
@@ -219,7 +219,7 @@
                         <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True"
                                 ItemsSource="{Binding Path=ListReCodesTable}"
                                 RowDetailsVisibilityMode="VisibleWhenSelected"
-                                SelectedItem="{Binding Path=CurentReCodesTable}" SelectionMode="Single" Grid.Row="1">
+                                SelectionMode="Single" Grid.Row="1">
                             <DataGrid.Columns>
                                 <!--<DataGridTextColumn Binding="{Binding Path=Id}" Header="N" Width="SizeToHeader" />-->
                                 <DataGridTextColumn Binding="{Binding Path=GlobalCode}" Header="Код товара" Width="1*" />

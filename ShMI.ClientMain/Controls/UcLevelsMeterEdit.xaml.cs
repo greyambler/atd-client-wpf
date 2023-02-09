@@ -41,16 +41,16 @@ namespace ShMI.ClientMain.Controls
                 {
                     case "NEW_servise":
                         {
-                            g_batFileLabel.Visibility = Visibility.Collapsed;
-                            g_batFile.Visibility = Visibility.Collapsed;
-                            l_IP.Visibility = Visibility.Visible;
+                            g_FileLabel.Visibility = Visibility.Collapsed;
+                            g_IP.Visibility = Visibility.Visible;
+                            g_Port.Visibility = Visibility.Visible;
                             break;
                         }
                     default:
                         {
-                            g_batFileLabel.Visibility = Visibility.Visible;
-                            g_batFile.Visibility = Visibility.Visible;
-                            l_IP.Visibility = Visibility.Collapsed;
+                            g_FileLabel.Visibility = Visibility.Visible;
+                            g_IP.Visibility = Visibility.Collapsed;
+                            g_Port.Visibility = Visibility.Collapsed;
                             break;
                         }
                 }

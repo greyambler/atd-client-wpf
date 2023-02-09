@@ -12,11 +12,13 @@ namespace ShMI.ClientMain.Modules
         public ModuleUcTanks(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
+            GetRowsNTank();
+
             InitTables();
         }
         private void InitTables()
         {
-            GetRowsNTank();
+
 
             //GetNStruna();
             //GetNTank();
@@ -26,7 +28,7 @@ namespace ShMI.ClientMain.Modules
 
         public override void AddItem()
         {
-            _ = MessageBox.Show("AddItem");
+            //_ = MessageBox.Show("AddItem");
 
             CurrentItem = new NTank();
             SetWidthListButton(new UcTanksEdit(this, CurrentItem));
@@ -49,11 +51,11 @@ namespace ShMI.ClientMain.Modules
                 InitTables();
             }
 
-            _ = MessageBox.Show("DeleteItem");
+            //_ = MessageBox.Show("DeleteItem");
         }
         public override void SaveItem()
         {
-            _ = MessageBox.Show("SaveItem");
+            //_ = MessageBox.Show("SaveItem");
 
             //if (string.IsNullOrEmpty(CurrentItem.Name_Object) || string.IsNullOrEmpty(CurrentItem.SiteID))
             //{

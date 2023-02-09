@@ -10,16 +10,26 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcCassa : ModuleMainWindow
     {
-        public ModuleMainWindow ModuleMain { get; set; }
-
         public ModuleUcCassa(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
+            GetRowsNCassa();
+
             InitTables();
         }
-        private void InitTables()
+        private void InitTables(NCassa CurrentItem = null)
         {
-            GetRowsNCassa();
+            if (!CurrentItem.ThisNotNull())
+            {
+                GetRowsNObject();
+
+            }
+            else
+            {
+                GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
+
+                CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+            }
         }
 
         #region IListButtonsService
@@ -27,7 +37,6 @@ namespace ShMI.ClientMain.Modules
         public override void AddItem()
         {
             CurrentItem = new NCassa("CASSA");
-            currentNObject = CurrentItem.CurrentNObject;
             SetWidthListButton(new UcCassaEdit(this, CurrentItem));
 
         }
@@ -49,7 +58,7 @@ namespace ShMI.ClientMain.Modules
         }
         public override void SaveItem()
         {
-            if (string.IsNullOrEmpty(CurrentItem.IP) || CurrentItem.Port < 0 || CurrentItem.NObjectId == Guid.Empty)
+            if (string.IsNullOrEmpty(CurrentItem.IP) || CurrentItem.Port < 0  || !CurrentNObject.ThisNotNull() || CurrentNObject.Id == Guid.Empty)
             {
                 _ = new WindDialog(WindDialog.DialogType.Error, "\nНе все обязательные поля заполнены.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }
@@ -61,14 +70,10 @@ namespace ShMI.ClientMain.Modules
                 {
                     using (EntitiesDb db = GetDb)
                     {
+                        CurrentItem.NObjectId = CurrentNObject.Id;
                         db.SaveNCassa(CurrentItem);
-
-                        //Guid idCurrentItem = CurrentItem.Id;
-                        //InitTables();
                         GetRowsNCassa();
-                        //CurrentItem = ListTH.FirstOrDefault(s => s.Id == idCurrentItem);
                         SetWidthListButton(new UcCassa(this, null));
-
                     }
                 }
             }
@@ -79,7 +84,7 @@ namespace ShMI.ClientMain.Modules
         }
         public override void Cancel()
         {
-            SetWidthListButton(new UcCassa(this, null));
+            SetWidthListButton(new UcCassa(this, CurrentItem));
         }
 
         #endregion IListButtonsService
@@ -91,19 +96,19 @@ namespace ShMI.ClientMain.Modules
             set
             {
                 currentItem = value;
-                MChangeProperty = "CurrentItem";
                 IsExistItemMain = value.ThisNotNull() ? Visibility.Visible : Visibility.Collapsed;
+                InitTables(currentItem);
+                MChangeProperty = "CurrentItem";
             }
         }
 
         public NObject currentNObject;
         public NObject CurrentNObject
         {
-            get => ListNObject.FirstOrDefault(s => s.Id == currentItem.NObjectId);
+            get => currentNObject;
             set
             {
                 currentNObject = value;
-                CurrentItem.NObjectId = currentNObject.ThisNotNull() ? currentNObject.Id : Guid.Empty;
                 MChangeProperty = "CurrentNObject";
             }
         }

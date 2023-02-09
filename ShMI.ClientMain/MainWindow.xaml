@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:ShMI.ClientMain.MainWindowControls"
         xmlns:Modules="clr-namespace:ShMI.ClientMain.Modules" x:Class="ShMI.ClientMain.MainWindow"
         mc:Ignorable="d"
-        Title="АТД" Height="650" Width="1200" MinHeight="300" MinWidth="300"
+        Title="АТД" Height="650" Width="1200" MinHeight="300" MinWidth="600"
         Loaded="Window_Loaded" Closed="Window_Closed" KeyDown="Main_Window_KeyDown" KeyUp="Main_Window_KeyUp">
 
 

@@ -57,10 +57,7 @@ namespace ShMI.ClientMain.Modules
                     using (EntitiesDb db = GetDb)
                     {
                         db.SaveReCodesTable(CurrentItem);
-
-                        //Guid idCurrentItem = CurrentItem.Id;
                         GetRowsReCodesTable();
-                        //CurrentItem = ListReCodesTable.FirstOrDefault(s => s.Id == idCurrentItem);
                         SetWidthListButton(new UcCodesGoods(this, null));
                     }
                 }
@@ -77,7 +74,6 @@ namespace ShMI.ClientMain.Modules
 
         #endregion IListButtonsService
 
-
         private ReCodesTable currentItem;
         public ReCodesTable CurrentItem
         {
@@ -85,8 +81,8 @@ namespace ShMI.ClientMain.Modules
             set
             {
                 currentItem = value;
-                MChangeProperty = "CurrentItem";
                 IsExistItemMain = value.ThisNotNull() ? Visibility.Visible : Visibility.Collapsed;
+                MChangeProperty = "CurrentItem";
             }
         }
     }

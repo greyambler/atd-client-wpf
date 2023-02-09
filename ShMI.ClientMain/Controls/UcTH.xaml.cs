@@ -27,7 +27,10 @@ namespace ShMI.ClientMain.Controls
                 UcSpinner = Spinner,
             };
 
-            Module.CurrentItem = EditItem;
+            if (EditItem.ThisNotNull())
+            {
+                Module.CurrentItem = EditItem;
+            }
         }
 
         public ModuleUcTH Module

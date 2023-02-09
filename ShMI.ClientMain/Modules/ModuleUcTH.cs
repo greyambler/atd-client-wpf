@@ -15,26 +15,30 @@ namespace ShMI.ClientMain.Modules
         public ModuleUcTH(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
+            GetRowsNCassa();
+
             InitTables();
         }
         private void InitTables(NCassa CurrentItem = null)
         {
-            if (!currentItem.ThisNotNull())
+            if (!CurrentItem.ThisNotNull())
             {
                 GetRowsNObject();
                 GetRowsTask_Device();
-                GetRowsNCassa();
                 GetRowsNTank();
                 GetRowsNStruna();
                 GetRowsReCodesTable();
             }
             else
             {
+
                 GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
                 GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
                 GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
                 GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
                 GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
+
+                CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
             }
         }
 
@@ -64,7 +68,7 @@ namespace ShMI.ClientMain.Modules
                     db.DeleteNCassa(CurrentItem);
                 }
                 CurrentItem = null;
-                InitTables();
+                GetRowsNCassa();
             }
         }
         public override void SaveItem()
@@ -81,6 +85,7 @@ namespace ShMI.ClientMain.Modules
                 {
                     using (EntitiesDb db = GetDb)
                     {
+                        CurrentItem.NObjectId = CurrentNObject.Id;
                         db.SaveNCassa(CurrentItem);
                         GetRowsNCassa();
                         SetWidthListButton(new UcTH(this, null));
@@ -88,6 +93,7 @@ namespace ShMI.ClientMain.Modules
                 }
             }
         }
+
         // Опросить
         public override void UtilItem()
         {
@@ -122,8 +128,7 @@ namespace ShMI.ClientMain.Modules
 
         public override void Cancel()
         {
-            //_ = new UcTH(ModuleMain, CurrentItem);
-            SetWidthListButton(new UcTH(this, null));
+            SetWidthListButton(new UcTH(this, CurrentItem));
         }
 
         #endregion IListButtonsService
@@ -135,35 +140,21 @@ namespace ShMI.ClientMain.Modules
             set
             {
                 currentItem = value;
-                MChangeProperty = "CurrentItem";
                 IsExistItemMain = value.ThisNotNull() ? Visibility.Visible : Visibility.Collapsed;
                 InitTables(currentItem);
+                MChangeProperty = "CurrentItem";
             }
         }
 
         public NObject currentNObject;
         public NObject CurrentNObject
         {
-            get => ListNObject.FirstOrDefault(s => s.Id == currentItem.NObjectId);
+            get => currentNObject;
             set
             {
                 currentNObject = value;
-                CurrentItem.NObjectId = currentNObject.ThisNotNull() ? currentNObject.Id : Guid.Empty;
                 MChangeProperty = "CurrentNObject";
-                InitTables(currentItem);
             }
         }
-
-        private Task_Device currentTask_Device;
-        public Task_Device CurrentTask_Device
-        {
-            get => currentTask_Device;
-            set
-            {
-                currentTask_Device = value;
-                MChangeProperty = "CurrentTask_Device";
-            }
-        }
-
     }
 }
