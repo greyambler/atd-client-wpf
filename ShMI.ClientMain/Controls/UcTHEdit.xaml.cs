@@ -9,7 +9,7 @@ namespace ShMI.ClientMain.Controls
     /// </summary>
     public partial class UcTHEdit : UserControl
     {
-        public UcTHEdit(ModuleUcTH ModuleMain, NCassa EditItem)
+        public UcTHEdit( ModuleUcTH ModuleMain, NCassa EditItem )
         {
             InitializeComponent();
             Module = ModuleMain;

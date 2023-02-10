@@ -38,7 +38,9 @@ namespace ShMI.BaseMain
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)
         {
+#if _DEBUG
             Console.WriteLine($"propertyName \t\t\t = {propertyName}");
+#endif
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

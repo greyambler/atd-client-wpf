@@ -12,14 +12,14 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcTH : ModuleMainWindow
     {
-        public ModuleUcTH(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcTH( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             GetRowsNCassa();
 
             InitTables();
         }
-        private void InitTables(NCassa CurrentItem = null)
+        private void InitTables( NCassa CurrentItem = null )
         {
             if (!CurrentItem.ThisNotNull())
             {
@@ -117,6 +117,7 @@ namespace ShMI.ClientMain.Modules
                 }
                 finally
                 {
+                    GetRowsNCassa();
                     /*иницализация***/
                     InitTables();
 

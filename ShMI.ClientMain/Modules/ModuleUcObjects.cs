@@ -10,14 +10,14 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcObjects : ModuleMainWindow
     {
-        public ModuleUcObjects(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcObjects( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             GetRowsNObject();
 
             InitTables();
         }
-        private void InitTables(NObject currentItem = null)
+        private void InitTables( NObject currentItem = null )
         {
             if (!currentItem.ThisNotNull())
             {
@@ -69,7 +69,7 @@ namespace ShMI.ClientMain.Modules
             }
             else if (ListNObject.FirstOrDefault(s => s.SiteID == CurrentItem.SiteID).ThisNotNull())
             {
-                _ = new WindDialog(WindDialog.DialogType.Error, "\nОбъект с кодом уже существует.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
+                _ = new WindDialog(WindDialog.DialogType.Error, $"\nОбъект с кодом {CurrentItem.SiteID} уже существует.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }
             else
             {
