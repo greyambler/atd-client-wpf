@@ -9,7 +9,7 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcTanks : ModuleMainWindow
     {
-        public ModuleUcTanks(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcTanks( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             GetRowsNTank();

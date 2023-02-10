@@ -10,7 +10,7 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcService : ModuleMainWindow
     {
-        public ModuleUcService(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcService( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             InitTables();

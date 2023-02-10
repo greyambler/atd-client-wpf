@@ -10,14 +10,17 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcCodesGoods : ModuleMainWindow
     {
-        public ModuleUcCodesGoods(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcCodesGoods( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             InitTables();
         }
         private void InitTables()
         {
-            GetRowsReCodesTable();
+            _ = DispatcherShell.BeginInvoke((Action)(() =>
+            {
+                GetRowsReCodesTable();
+            }));
         }
 
         #region IListButtonsService

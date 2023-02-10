@@ -21,25 +21,27 @@ namespace ShMI.ClientMain.Modules
         }
         private void InitTables( NCassa CurrentItem = null )
         {
-            if (!CurrentItem.ThisNotNull())
+            _ = DispatcherShell.BeginInvoke((Action)(() =>
             {
-                GetRowsNObject();
-                GetRowsTask_Device();
-                GetRowsNTank();
-                GetRowsNStruna();
-                GetRowsReCodesTable();
-            }
-            else
-            {
+                if (!CurrentItem.ThisNotNull())
+                {
+                    GetRowsNObject();
+                    GetRowsTask_Device();
+                    GetRowsNTank();
+                    GetRowsNStruna();
+                    GetRowsReCodesTable();
+                }
+                else
+                {
+                    GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
+                    GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
+                    GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
+                    GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
+                    GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
 
-                GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
-                GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
-                GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
-                GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
-                GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
-
-                CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
-            }
+                    CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+                }
+            }));
         }
 
         public UcSpinner UcSpinner

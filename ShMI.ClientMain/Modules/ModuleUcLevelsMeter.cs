@@ -11,36 +11,40 @@ namespace ShMI.ClientMain.Modules
     public class ModuleUcLevelsMeter : ModuleMainWindow
     {
         //public ModuleUcLevelsMeter(ModuleMainWindow ModuleMain, UserControl uc)
-        public ModuleUcLevelsMeter(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcLevelsMeter( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             GetRowsNStruna();
 
             InitTables();
         }
-        private void InitTables(NStruna CurrentItem = null)
+        private void InitTables( NStruna CurrentItem = null )
         {
-            if (!CurrentItem.ThisNotNull())
-            {
-                GetRowsNObject();
-                GetRowsTask_Device();
-                GetRowsNTank();
-                GetRowsNStruna();
-                GetRowsReCodesTable();
-            }
-            else
+            _ = DispatcherShell.BeginInvoke((Action)(() =>
             {
 
-                //GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
-                //GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
-                //GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
-                //GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
-                //GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
+                if (!CurrentItem.ThisNotNull())
+                {
+                    GetRowsNObject();
+                    GetRowsTask_Device();
+                    GetRowsNTank();
+                    GetRowsNStruna();
+                    GetRowsReCodesTable();
+                }
+                else
+                {
 
-                //CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+                    //GetItemsFromNCassa(CurrentItem, TypeTable.NCassa);
+                    //GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
+                    //GetItemsFromNCassa(CurrentItem, TypeTable.NTank);
+                    //GetItemsFromNCassa(CurrentItem, TypeTable.NStruna);
+                    //GetItemsFromNCassa(CurrentItem, TypeTable.Task_Device);
 
-                CurrentTypeLevel = currentItem.Type_Level.ThisNotNull() ? ListTypeLevel.FirstOrDefault(s => s == currentItem.Type_Level) : ListTypeLevel.FirstOrDefault();
-            }
+                    //CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+
+                    CurrentTypeLevel = currentItem.Type_Level.ThisNotNull() ? ListTypeLevel.FirstOrDefault(s => s == currentItem.Type_Level) : ListTypeLevel.FirstOrDefault();
+                }
+            }));
         }
 
         #region IListButtonsService

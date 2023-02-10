@@ -28,13 +28,13 @@ namespace ShMI.ClientMain.Modules
             get => "";
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged( string propertyName )
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
 
-        public BitmapFrame InitIconTypeWindow(string PathImage = "Icons/Spell.ico")
+        public BitmapFrame InitIconTypeWindow( string PathImage = "Icons/Spell.ico" )
         {
             try
             {

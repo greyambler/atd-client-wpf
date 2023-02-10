@@ -17,7 +17,7 @@ namespace ShMI.ClientMain.Modules
         {
 
         }
-        public ModuleMainWindow(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleMainWindow( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
         {
             this.ShellWindow = ShellWindow;
             this.WorkGrid = WorkGrid;
@@ -100,7 +100,7 @@ namespace ShMI.ClientMain.Modules
             }
         }
 
-        public void DispatcherShellWork(UserControl Spinner, System.Windows.Visibility visibility)
+        public void DispatcherShellWork( UserControl Spinner, System.Windows.Visibility visibility )
         {
             _ = DispatcherShell.BeginInvoke((Action)(() =>
             {
@@ -108,7 +108,7 @@ namespace ShMI.ClientMain.Modules
             }));
         }
 
-        public string GetChooseFile(string HeadText, string SetFirstCatalog = "")
+        public string GetChooseFile( string HeadText, string SetFirstCatalog = "" )
         {
             try
             {
@@ -169,7 +169,7 @@ namespace ShMI.ClientMain.Modules
                 Interval = new TimeSpan(0, 0, 1),
                 IsEnabled = true,
             };
-            timer.Tick += (o, t) =>
+            timer.Tick += ( o, t ) =>
             {
                 Date_Time = string.Format("{0:dd.MM.yyyy}", DateTime.Now);
                 Time_Time = string.Format("{0:HH:mm:ss}", DateTime.Now);
@@ -203,7 +203,7 @@ namespace ShMI.ClientMain.Modules
         {
             get;
         }
-        public void SetWidthListButton(UserControl _UserControl = null, bool visual = true)
+        public void SetWidthListButton( UserControl _UserControl = null, bool visual = true )
         {
             WidthListButton = !visual ? 0 : 180;
             if (WorkGrid.ThisNotNull() && _UserControl.ThisNotNull())
@@ -271,7 +271,7 @@ namespace ShMI.ClientMain.Modules
             Task_Device
         }
 
-        public void GetItemsFromNCassa(NCassa CurrentItem, TypeTable typeTable)
+        public void GetItemsFromNCassa( NCassa CurrentItem, TypeTable typeTable )
         {
             NObject currentNobject = null;
 
@@ -311,7 +311,7 @@ namespace ShMI.ClientMain.Modules
                     }
 
                 default:
-                    break;
+                break;
             }
         }
 
@@ -319,21 +319,14 @@ namespace ShMI.ClientMain.Modules
 
         public void GetTestTable()
         {
-            try
+            using (EntitiesDb db = GetDb)
             {
-                using (EntitiesDb db = GetDb)
+                listTestTable = new ObservableCollection<TestTable>();
+                foreach (TestTable item in db.TestTables.ToList())
                 {
-                    listTestTable = new ObservableCollection<TestTable>();
-                    foreach (TestTable item in db.TestTables.ToList())
-                    {
-                        listTestTable.Add(item);
-                    }
-                    ListTestTable = listTestTable;
+                    listTestTable.Add(item);
                 }
-
-            }
-            catch (Exception er)
-            {
+                ListTestTable = listTestTable;
             }
         }
 
@@ -353,7 +346,7 @@ namespace ShMI.ClientMain.Modules
 
         #region NObject
 
-        public void GetRowsNObject(NObject currentItem = null)
+        public void GetRowsNObject( NObject currentItem = null )
         {
             string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
             _ = Guid.TryParse(Id, out Guid idObj);
@@ -421,7 +414,7 @@ namespace ShMI.ClientMain.Modules
 
         #region NCassa
 
-        public void GetRowsNCassa(NObject currentItem = null)
+        public void GetRowsNCassa( NObject currentItem = null )
         {
             string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
             _ = Guid.TryParse(Id, out Guid idObj);
@@ -445,7 +438,6 @@ namespace ShMI.ClientMain.Modules
                         listTH.Add(item);
                     }
                 }
-
             }
 
             ListNCassa = listNCassa;
@@ -454,7 +446,7 @@ namespace ShMI.ClientMain.Modules
 
         }
 
-        public void GetRowsNCassaNotTH(NObject currentItem = null)
+        public void GetRowsNCassaNotTH( NObject currentItem = null )
         {
             string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
             _ = Guid.TryParse(Id, out Guid idObj);
@@ -506,7 +498,7 @@ namespace ShMI.ClientMain.Modules
 
         #region NTank
 
-        public void GetRowsNTank(NObject currentItem = null)
+        public void GetRowsNTank( NObject currentItem = null )
         {
             string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
             _ = Guid.TryParse(Id, out Guid idObj);
@@ -545,7 +537,7 @@ namespace ShMI.ClientMain.Modules
 
         #region NStruna
 
-        public void GetRowsNStruna(NObject currentItem = null)
+        public void GetRowsNStruna( NObject currentItem = null )
         {
             string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
             _ = Guid.TryParse(Id, out Guid idObj);
@@ -590,7 +582,7 @@ namespace ShMI.ClientMain.Modules
 
         #region Task_Device
 
-        public void GetRowsTask_Device(NObject currentItem = null)
+        public void GetRowsTask_Device( NObject currentItem = null )
         {
             string Id = currentItem.ThisNotNull() ? currentItem.Id.ToString() : "";
             _ = Guid.TryParse(Id, out Guid idObj);
@@ -627,7 +619,7 @@ namespace ShMI.ClientMain.Modules
             }
         }
 
-        public Task_Device GetTask_Device(Guid id)
+        public Task_Device GetTask_Device( Guid id )
         {
             Task_Device task_Device = null;
             using (EntitiesDb db = GetDb)
@@ -642,7 +634,7 @@ namespace ShMI.ClientMain.Modules
         #endregion ObservableCollection
 
         //Утилиты
-        public string GetChooseDirectory(string HeadText, string SetFirstCatalog = "")
+        public string GetChooseDirectory( string HeadText, string SetFirstCatalog = "" )
         {
             string outStr = String.Empty;
             try
@@ -663,6 +655,9 @@ namespace ShMI.ClientMain.Modules
             }
             catch (Exception er)
             {
+                string msg = string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
+                Console.WriteLine(msg);
+
                 //MethodBase.GetCurrentMethod().Name.SetLogServiceError(this, er);
 
                 //string msg = string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);

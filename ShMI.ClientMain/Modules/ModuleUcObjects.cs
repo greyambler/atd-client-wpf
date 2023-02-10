@@ -19,22 +19,25 @@ namespace ShMI.ClientMain.Modules
         }
         private void InitTables( NObject currentItem = null )
         {
-            if (!currentItem.ThisNotNull())
+            _ = DispatcherShell.BeginInvoke((Action)(() =>
             {
-                GetRowsTask_Device();
-                GetRowsNCassa();
-                GetRowsNTank();
-                GetRowsNStruna();
-                GetRowsReCodesTable();
-            }
-            else
-            {
-                GetRowsTask_Device(currentItem);
-                GetRowsNCassa(currentItem);
-                GetRowsNTank(currentItem);
-                GetRowsNStruna(currentItem);
-                GetRowsReCodesTable();
-            }
+                if (!currentItem.ThisNotNull())
+                {
+                    GetRowsTask_Device();
+                    GetRowsNCassa();
+                    GetRowsNTank();
+                    GetRowsNStruna();
+                    GetRowsReCodesTable();
+                }
+                else
+                {
+                    GetRowsTask_Device(currentItem);
+                    GetRowsNCassa(currentItem);
+                    GetRowsNTank(currentItem);
+                    GetRowsNStruna(currentItem);
+                    GetRowsReCodesTable();
+                }
+            }));
         }
 
         #region IListButtonsService
@@ -67,7 +70,7 @@ namespace ShMI.ClientMain.Modules
             {
                 _ = new WindDialog(WindDialog.DialogType.Error, "\nНе все обязательные поля заполнены.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }
-            else if (ListNObject.FirstOrDefault(s => s.SiteID == CurrentItem.SiteID).ThisNotNull())
+            else if (ListNObject.FirstOrDefault(s => s.SiteID == CurrentItem.SiteID && s.Id != CurrentItem.Id).ThisNotNull())
             {
                 _ = new WindDialog(WindDialog.DialogType.Error, $"\nОбъект с кодом {CurrentItem.SiteID} уже существует.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }

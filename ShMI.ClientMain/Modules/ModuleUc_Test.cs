@@ -8,7 +8,7 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUc_Test : ModuleMainWindow
     {
-        public ModuleUc_Test(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUc_Test( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             InitTables();

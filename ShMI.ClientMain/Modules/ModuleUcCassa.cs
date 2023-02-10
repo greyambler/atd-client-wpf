@@ -10,26 +10,28 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcCassa : ModuleMainWindow
     {
-        public ModuleUcCassa(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcCassa( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             GetRowsNCassa();
 
             InitTables();
         }
-        private void InitTables(NCassa CurrentItem = null)
+        private void InitTables( NCassa CurrentItem = null )
         {
-            if (!CurrentItem.ThisNotNull())
+            _ = DispatcherShell.BeginInvoke((Action)(() =>
             {
-                GetRowsNObject();
+                if (!CurrentItem.ThisNotNull())
+                {
+                    GetRowsNObject();
+                }
+                else
+                {
+                    GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
 
-            }
-            else
-            {
-                GetItemsFromNCassa(CurrentItem, TypeTable.NObject);
-
-                CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
-            }
+                    CurrentNObject = ListNObject.FirstOrDefault(s => s.Id == CurrentItem.NObjectId);
+                }
+            }));
         }
 
         #region IListButtonsService
@@ -58,7 +60,7 @@ namespace ShMI.ClientMain.Modules
         }
         public override void SaveItem()
         {
-            if (string.IsNullOrEmpty(CurrentItem.IP) || CurrentItem.Port < 0  || !CurrentNObject.ThisNotNull() || CurrentNObject.Id == Guid.Empty)
+            if (string.IsNullOrEmpty(CurrentItem.IP) || CurrentItem.Port < 0 || !CurrentNObject.ThisNotNull() || CurrentNObject.Id == Guid.Empty)
             {
                 _ = new WindDialog(WindDialog.DialogType.Error, "\nНе все обязательные поля заполнены.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }

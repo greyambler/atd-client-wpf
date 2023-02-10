@@ -10,7 +10,7 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcTasks : ModuleMainWindow
     {
-        public ModuleUcTasks(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcTasks( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
             InitTables();
@@ -18,8 +18,11 @@ namespace ShMI.ClientMain.Modules
 
         private void InitTables()
         {
-            GetRowsNObject();
-            GetRowsTask_Device();
+            _ = DispatcherShell.BeginInvoke((Action)(() =>
+            {
+                GetRowsNObject();
+                GetRowsTask_Device();
+            }));
         }
 
         #region IListButtonsService

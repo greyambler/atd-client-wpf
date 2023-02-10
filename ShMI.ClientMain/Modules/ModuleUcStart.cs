@@ -7,7 +7,7 @@ namespace ShMI.ClientMain.Modules
 {
     public class ModuleUcStart : ModuleMainWindow
     {
-        public ModuleUcStart(Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore)
+        public ModuleUcStart( Window ShellWindow, Grid WorkGrid, ResourceDictionary ResourcesDict, bool IsAdmin, Dispatcher DispatcherCore )
             : base(ShellWindow, WorkGrid, ResourcesDict, IsAdmin, DispatcherCore)
         {
         }
