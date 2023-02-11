@@ -39,7 +39,7 @@
                             <Label Content="Название уровнемера" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" />
                             <TextBlock Grid.Column="1" Height="23" HorizontalAlignment="Stretch" Margin="3"
-                                    Text="{Binding Path=CurrentItem.Name, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                                    Text="{Binding Path=CurrentItem.Name, Mode=TwoWay}"
                                     VerticalAlignment="Center" />
                         </Grid>
                     </Border>
@@ -86,11 +86,11 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox IsReadOnly="True" Grid.Column="1" Height="23" HorizontalAlignment="Stretch"
                                         Margin="3,5"
-                                        Text="{Binding Path=CurrentItem.MNameBatFile, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                                        Text="{Binding Path=CurrentItem.MNameBatFile, Mode=TwoWay}"
                                         VerticalAlignment="Center" Grid.ColumnSpan="2" />
                                 <Button Content="Путь до BAT файла" Grid.Column="3" Tag="Путь до BAT файла"
-                                        Style="{StaticResource ButtonRound_Change}" HorizontalAlignment="Center"
-                                        Margin="1,2,1,1" VerticalAlignment="Center" Click="Button_Click" />
+                                        Style="{StaticResource ButtonRound_Change}" HorizontalAlignment="Center" Margin="1,2,1,1"
+                                        VerticalAlignment="Center" Click="BntChooseBat_Click" />
                             </Grid>
                         </Grid>
                     </Border>
@@ -103,7 +103,7 @@
                             <Label Content="IP" Grid.Column="0" Margin="3" HorizontalAlignment="Left"
                                     VerticalAlignment="Center" />
                             <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Stretch" Margin="3"
-                                    Text="{Binding Path=CurrentItem.IP, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                                    Text="{Binding Path=CurrentItem.IP, Mode=TwoWay}"
                                     VerticalAlignment="Center" Visibility="{Binding Visibility, ElementName=l_IP}" />
                         </Grid>
                     </Border>
@@ -116,7 +116,7 @@
                             <Label Content="Port" Grid.Column="0" HorizontalAlignment="Left" Margin="3"
                                     VerticalAlignment="Center" Visibility="{Binding Visibility, ElementName=l_IP}" />
                             <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Stretch" Margin="3"
-                                    Text="{Binding Path=CurrentItem.Port, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                                    Text="{Binding Path=CurrentItem.Port, Mode=TwoWay}"
                                     VerticalAlignment="Center" Visibility="{Binding Visibility, ElementName=l_IP}" />
                         </Grid>
                     </Border>

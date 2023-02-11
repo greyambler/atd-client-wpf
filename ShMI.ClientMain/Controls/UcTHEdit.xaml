@@ -50,11 +50,14 @@
                             </Grid.ColumnDefinitions>
                             <Label Content="Название объекта" Grid.Column="0"
                                     HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
-                            <ComboBox Grid.Column="1" Height="23" DisplayMemberPath="Name_Object"
-                                    Margin="3,0,0,0"
-                                    SelectedItem="{Binding Mode=TwoWay, Path=CurrentNObject}"
-                                    ItemsSource="{Binding Path=ListNObject}"
-                                    VerticalAlignment="Center"></ComboBox>
+                            <BulletDecorator Grid.Column="2" DataContext="{Binding CurrentItem.NObjectId, 
+                                Mode=TwoWay, ValidatesOnDataErrors=true}" />
+                            <ComboBox x:Name="cb_NObect" Grid.Column="2" Height="23"
+                                        DisplayMemberPath="Name_Object" Margin="3,0,0,0"
+                                        SelectedItem="{Binding CurrentNObject, Mode=TwoWay }"
+                                        ItemsSource="{Binding Path=ListNObject}"
+                                        VerticalAlignment="Center"></ComboBox>
+                            
                         </Grid>
                     </Border>
                     <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="0.1">
@@ -67,7 +70,7 @@
                                     Margin="3" VerticalAlignment="Center" />
                             <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Stretch"
                                     Margin="3"
-                                    Text="{Binding Path=CurrentItem.IP, Mode=TwoWay, ValidatesOnDataErrors=true}"
+                                    Text="{Binding CurrentItem.IP, Mode=TwoWay, ValidatesOnDataErrors=true}"
                                     VerticalAlignment="Center" />
                         </Grid>
                     </Border>
@@ -81,7 +84,7 @@
                                     Margin="3" VerticalAlignment="Center" />
                             <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Stretch"
                                     Margin="3"
-                                    Text="{Binding Path=CurrentItem.Port, Mode=TwoWay, ValidatesOnDataErrors=true}"
+                                    Text="{Binding CurrentItem.Port, Mode=TwoWay, ValidatesOnDataErrors=true}"
                                     VerticalAlignment="Center" />
                         </Grid>
                     </Border>

@@ -9,9 +9,9 @@ namespace ShMI.BaseMain
 {
     public partial class EntitiesDb : DbContext
     {
-        public EntitiesDb(string nameOrConnectionString) : base(nameOrConnectionString) { }
+        public EntitiesDb( string nameOrConnectionString ) : base(nameOrConnectionString) { }
 
-        public void SaveTestTable(TestTable Item)
+        public void SaveTestTable( TestTable Item )
         {
             try
             {
@@ -35,7 +35,7 @@ namespace ShMI.BaseMain
                 string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
             }
         }
-        public void DeleteTestTable(TestTable Item)
+        public void DeleteTestTable( TestTable Item )
         {
             if (Item.ThisNotNull() && Item.Id != 0)
             {
@@ -48,7 +48,7 @@ namespace ShMI.BaseMain
             }
         }
 
-        public void SaveNObject(NObject Item)
+        public void SaveNObject( NObject Item )
         {
             try
             {
@@ -85,7 +85,7 @@ namespace ShMI.BaseMain
                 string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
             }
         }
-        public void DeleteNObject(NObject Item)
+        public void DeleteNObject( NObject Item )
         {
             if (Item.ThisNotNull() && Item.Id != Guid.Empty)
             {
@@ -98,7 +98,7 @@ namespace ShMI.BaseMain
             }
         }
 
-        public void SaveReCodesTable(ReCodesTable Item)
+        public void SaveReCodesTable( ReCodesTable Item )
         {
             try
             {
@@ -125,7 +125,7 @@ namespace ShMI.BaseMain
                 string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
             }
         }
-        public void DeleteReCodesTable(ReCodesTable Item)
+        public void DeleteReCodesTable( ReCodesTable Item )
         {
             if (Item.ThisNotNull() && Item.Id != Guid.Empty)
             {
@@ -138,7 +138,7 @@ namespace ShMI.BaseMain
             }
         }
 
-        public void SaveNCassa(NCassa Item)
+        public void SaveNCassa( NCassa Item )
         {
             try
             {
@@ -178,7 +178,7 @@ namespace ShMI.BaseMain
                 string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
             }
         }
-        public void DeleteNCassa(NCassa Item)
+        public void DeleteNCassa( NCassa Item )
         {
             if (Item.ThisNotNull() && Item.Id != Guid.Empty)
             {
@@ -191,7 +191,7 @@ namespace ShMI.BaseMain
             }
         }
 
-        public void SaveNStruna(NStruna Item)
+        public void SaveNStruna( NStruna Item )
         {
             try
             {
@@ -218,7 +218,7 @@ namespace ShMI.BaseMain
                 string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
             }
         }
-        public void DeleteNStruna(NStruna Item)
+        public void DeleteNStruna( NStruna Item )
         {
             if (Item.ThisNotNull() && Item.Id != Guid.Empty)
             {
@@ -231,7 +231,7 @@ namespace ShMI.BaseMain
             }
         }
 
-        public void SaveNTank(NTank Item)
+        public void SaveNTank( NTank Item )
         {
             try
             {
@@ -259,7 +259,7 @@ namespace ShMI.BaseMain
                 string.Format("\r\nMessage\r\n{0}\r\nGetType\r\n{1}\r\nStackTrace\r\n{2}\r\nInnerException\r\n{3}", er.Message, er.GetType(), er.StackTrace, er.InnerException);
             }
         }
-        public void DeleteNTank(NTank Item)
+        public void DeleteNTank( NTank Item )
         {
             if (Item.ThisNotNull() && Item.Id != Guid.Empty)
             {
@@ -272,7 +272,7 @@ namespace ShMI.BaseMain
             }
         }
 
-        public void SaveTask_Device(Task_Device Item)
+        public void SaveTask_Device( Task_Device Item )
         {
             Task_Device CurrentItem = Item;
             try
@@ -302,7 +302,7 @@ namespace ShMI.BaseMain
                 throw new Exception(mes);
             }
         }
-        public void DeleteTask_Device(Task_Device Item)
+        public void DeleteTask_Device( Task_Device Item )
         {
             if (Item.ThisNotNull() && Item.Id != Guid.Empty)
             {
@@ -314,7 +314,7 @@ namespace ShMI.BaseMain
                 _ = SaveChanges();
             }
         }
-        public void ValidTask_Device(Task_Device Item)
+        public void ValidTask_Device( Task_Device Item )
         {
             //ecть раписание на этом объекте
 
@@ -354,7 +354,7 @@ namespace ShMI.BaseMain
             get => "";
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged( string propertyName )
         {
             Console.WriteLine($"MainN {propertyName}");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -362,7 +362,7 @@ namespace ShMI.BaseMain
 
         #endregion
 
-        public string GetNameItem(string typeCassa)
+        public string GetNameItem( string typeCassa )
         {
             int i = 1;
             string nameItem = typeCassa.ToUpper();
@@ -371,25 +371,26 @@ namespace ShMI.BaseMain
                 switch (nameItem)
                 {
                     case "TASK":
-                    {
-                        foreach (Task_Device item in db.Task_Device.ToList())
                         {
-                            if (int.TryParse(item.Name_Task.Replace(nameItem, ""), out int t))
+                            foreach (Task_Device item in db.Task_Device.ToList())
                             {
-                                if (i < t)
+                                if (int.TryParse(item.Name_Task.Replace(nameItem, ""), out int t))
                                 {
-                                    i = t;
-                                    i++;
-                                }
-                                else if (i == t)
-                                {
-                                    i++;
+                                    if (i < t)
+                                    {
+                                        i = t;
+                                        i++;
+                                    }
+                                    else if (i == t)
+                                    {
+                                        i++;
+                                    }
                                 }
                             }
+                            break;
                         }
-                        break;
-                    }
-                    default: break;
+                    default:
+                    break;
                 }
                 foreach (NCassa item in db.NCassas.ToList())
                 {
@@ -432,7 +433,7 @@ namespace ShMI.BaseMain
 
     public partial class NObject : MainTable, IDataErrorInfo
     {
-        public NObject(NObject item)
+        public NObject( NObject item )
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
             //Имя объекта
@@ -443,7 +444,7 @@ namespace ShMI.BaseMain
             Address = item.Address;
         }
 
-        public void ChangeValueItem(NObject item)
+        public void ChangeValueItem( NObject item )
         {
             Name_Object = item.Name_Object;
             SiteID = item.SiteID;
@@ -458,20 +459,20 @@ namespace ShMI.BaseMain
                 switch (columnName)
                 {
                     case "SiteID":
-                        if (string.IsNullOrEmpty(SiteID))
-                        {
-                            error = "\"Код объекта\" - обязательное поле.";
-                        }
-                        break;
+                    if (string.IsNullOrEmpty(SiteID))
+                    {
+                        error = "\"Код объекта\" - обязательное поле.";
+                    }
+                    break;
                     case "Name_Object":
-                        if (string.IsNullOrEmpty(Name_Object))
+                    if (string.IsNullOrEmpty(Name_Object))
 
-                        {
-                            error = "\"Имя объекта\" - обязательное поле.";
-                        }
-                        break;
+                    {
+                        error = "\"Имя объекта\" - обязательное поле.";
+                    }
+                    break;
                     default:
-                        break;
+                    break;
                 }
                 return error;
             }
@@ -482,14 +483,14 @@ namespace ShMI.BaseMain
     public partial class ReCodesTable : MainTable, IDataErrorInfo
     {
         public ReCodesTable() { }
-        public ReCodesTable(ReCodesTable item)
+        public ReCodesTable( ReCodesTable item )
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
             GlobalCode = item.GlobalCode;
             LocalCode = item.LocalCode;
         }
 
-        public void ChangeValueItem(ReCodesTable item)
+        public void ChangeValueItem( ReCodesTable item )
         {
             GlobalCode = item.GlobalCode;
             LocalCode = item.LocalCode;
@@ -503,19 +504,19 @@ namespace ShMI.BaseMain
                 switch (columnName)
                 {
                     case "LocalCode":
-                        if (string.IsNullOrEmpty(LocalCode) || !int.TryParse(LocalCode, out int r))
-                        {
-                            error = "\"Локальный код\" - обязательное поле.";
-                        }
-                        break;
+                    if (string.IsNullOrWhiteSpace(LocalCode) || !int.TryParse(LocalCode, out int r))
+                    {
+                        error = "\"Локальный код\" - обязательное поле.";
+                    }
+                    break;
                     case "GlobalCode":
-                        if (string.IsNullOrEmpty(GlobalCode) || !int.TryParse(GlobalCode, out int t))
-                        {
-                            error = "\"Глобальный код\" - обязательное поле.";
-                        }
-                        break;
+                    if (string.IsNullOrWhiteSpace(GlobalCode) || !int.TryParse(GlobalCode, out int t))
+                    {
+                        error = "\"Глобальный код\" - обязательное поле.";
+                    }
+                    break;
                     default:
-                        break;
+                    break;
                 }
                 return error;
             }
@@ -527,7 +528,7 @@ namespace ShMI.BaseMain
 
     public partial class NCassa : MainTable, IDataErrorInfo
     {
-        public NCassa(NCassa item)
+        public NCassa( NCassa item )
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
             IP = item.IP;
@@ -542,7 +543,7 @@ namespace ShMI.BaseMain
             NObjectId_Name = item.NObjectId_Name;
         }
 
-        public NCassa(string TypeName)
+        public NCassa( string TypeName )
         {
             Name = GetNameItem(TypeName);
             //NObjectId = CurrentNObject == null ? Guid.Empty : CurrentNObject.Id;
@@ -558,7 +559,7 @@ namespace ShMI.BaseMain
 
         public NObject CurrentNObject => InitObject();
 
-        public void ChangeValueItem(NCassa item)
+        public void ChangeValueItem( NCassa item )
         {
             IP = item.IP;
             Port = item.Port;
@@ -581,20 +582,26 @@ namespace ShMI.BaseMain
                 string error = string.Empty;
                 switch (columnName)
                 {
+                    case "NObjectId":
+                    if (NObjectId == Guid.Empty)
+                    {
+                        error = "\"NObject\" - обязательное поле.";
+                    }
+                    break;
                     case "IP":
-                        if (string.IsNullOrEmpty(IP))
-                        {
-                            error = "\"IP\" - обязательное поле.";
-                        }
-                        break;
+                    if (string.IsNullOrWhiteSpace(IP))
+                    {
+                        error = "\"IP\" - обязательное поле.";
+                    }
+                    break;
                     case "Port":
-                        if (Port < 0)
-                        {
-                            error = "\"Port\" - обязательное поле.";
-                        }
-                        break;
+                    if (Port <= 0)
+                    {
+                        error = "\"Port\" - обязательное поле.";
+                    }
+                    break;
                     default:
-                        break;
+                    break;
                 }
                 return error;
             }
@@ -605,7 +612,7 @@ namespace ShMI.BaseMain
 
     public partial class NStruna : MainTable
     {
-        public NStruna(NStruna item)
+        public NStruna( NStruna item )
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
             Name = item.Name;
@@ -614,13 +621,13 @@ namespace ShMI.BaseMain
             Type_Level = item.Type_Level;
         }
 
-        public NStruna(string TypeName)
+        public NStruna( string TypeName )
         {
             Name = GetNameItem(TypeName);
             NObjectId = CurrentNObject == null ? Guid.Empty : CurrentNObject.Id;
         }
 
-        public string GetNameItem(string typeCassa)
+        public string GetNameItem( string typeCassa )
         {
             int i = 1;
             string nameItem = typeCassa.ToUpper();
@@ -655,7 +662,7 @@ namespace ShMI.BaseMain
 
         public NObject CurrentNObject => InitObject();
 
-        public void ChangeValueItem(NStruna item)
+        public void ChangeValueItem( NStruna item )
         {
             Name = item.Name;
             NObjectId = item.NObjectId;
@@ -663,12 +670,12 @@ namespace ShMI.BaseMain
             Type_Level = item.Type_Level;
         }
 
-        public static NStruna Deserialize(string strJson)
+        public static NStruna Deserialize( string strJson )
         {
             return JsonConvert.DeserializeObject<NStruna>(strJson);
         }
 
-        public static List<NStruna> DeserializeList(string strJson)
+        public static List<NStruna> DeserializeList( string strJson )
         {
             return JsonConvert.DeserializeObject<List<NStruna>>(strJson);
         }
@@ -676,7 +683,7 @@ namespace ShMI.BaseMain
 
     public partial class NTank : MainTable
     {
-        public NTank(NTank item)
+        public NTank( NTank item )
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
 
@@ -710,7 +717,7 @@ namespace ShMI.BaseMain
 
         public NObject CurrentNObject => InitObject();
 
-        public void ChangeValueItem(NTank item)
+        public void ChangeValueItem( NTank item )
         {
             TankNumber = item.TankNumber;
             Grade = item.Grade;
@@ -727,13 +734,13 @@ namespace ShMI.BaseMain
     {
         public Task_Device() { }
 
-        public Task_Device(Task_Device item)
+        public Task_Device( Task_Device item )
         {
             Id = item.Id == Guid.Empty ? Guid.NewGuid() : item.Id;
             ChangeValueItem(item);
         }
 
-        public Task_Device(string TypeName)
+        public Task_Device( string TypeName )
         {
             Name_Task = GetNameItem(TypeName);
             //NObjectId = CurrentNObject == null ? Guid.Empty : CurrentNObject.Id;
@@ -763,7 +770,7 @@ namespace ShMI.BaseMain
             get; set;
         }
 
-        public void ChangeValueItem(Task_Device item)
+        public void ChangeValueItem( Task_Device item )
         {
             Date_LastLine_Struna = item.Date_LastLine_Struna == new DateTime() ? null : item.Date_LastLine_Struna;
             Date_LastLine_Cassa = item.Date_LastLine_Cassa == new DateTime() ? null : item.Date_LastLine_Cassa;

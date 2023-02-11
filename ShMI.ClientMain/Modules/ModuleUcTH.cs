@@ -19,7 +19,7 @@ namespace ShMI.ClientMain.Modules
 
             InitTables();
         }
-        private void InitTables( NCassa CurrentItem = null )
+        public void InitTables( NCassa CurrentItem = null )
         {
             _ = DispatcherShell.BeginInvoke((Action)(() =>
             {
@@ -54,11 +54,11 @@ namespace ShMI.ClientMain.Modules
         public override void AddItem()
         {
             CurrentItem = new NCassa("th");
-            SetWidthListButton(new UcTHEdit(this, CurrentItem));
+            SetWidthListButton(new UcTHEdit(this, CurrentItem, false));
         }
         public override void EditItem()
         {
-            SetWidthListButton(new UcTHEdit(this, CurrentItem));
+            SetWidthListButton(new UcTHEdit(this, CurrentItem, true));
         }
         public override void DeleteItem()
         {
@@ -75,7 +75,7 @@ namespace ShMI.ClientMain.Modules
         }
         public override void SaveItem()
         {
-            if (string.IsNullOrEmpty(CurrentItem.IP) || CurrentItem.Port < 0)
+            if (string.IsNullOrEmpty(CurrentItem.IP) || CurrentItem.Port <= 0 || !CurrentNObject.ThisNotNull())
             {
                 _ = new WindDialog(WindDialog.DialogType.Error, "\nНе все обязательные поля заполнены.\nСохранение невозможно.\n", _FontSize: 16).ShowDialog();
             }
@@ -149,13 +149,18 @@ namespace ShMI.ClientMain.Modules
             }
         }
 
-        public NObject currentNObject;
+        private NObject currentNObject;
         public NObject CurrentNObject
         {
             get => currentNObject;
             set
             {
                 currentNObject = value;
+                if (currentNObject.ThisNotNull())
+                {
+                    CurrentItem.NObjectId = currentNObject.Id;
+                    MChangeProperty = "CurrentItem";
+                }
                 MChangeProperty = "CurrentNObject";
             }
         }

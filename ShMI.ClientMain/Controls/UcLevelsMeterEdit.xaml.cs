@@ -23,7 +23,7 @@ namespace ShMI.ClientMain.Controls
             set => mainGrid.DataContext = value;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BntChooseBat_Click( object sender, RoutedEventArgs e)
         {
             string SetFirstCatalog = "";
             if (Module != null && Module.CurrentItem != null)
